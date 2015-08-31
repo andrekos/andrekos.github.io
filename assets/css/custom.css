@@ -1,0 +1,22 @@
+a.footnote:before {   
+ content: "[";
+}
+
+a.footnote:after {
+    content: "]";
+}
+
+
+table.highlighttable {
+  overflow-x:auto;
+  display:inline-block;
+}
+
+table.highlighttable td.code {
+  width:100%;
+}
+
+pre code {
+  white-space: pre;
+}
+

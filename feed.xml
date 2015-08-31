@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">Andrey Kostenko Analytics</title>
+<generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="/feed.xml" />
+<link rel="alternate" type="text/html" href="" />
+<updated>2015-08-31T12:32:51+00:00</updated>
+<id>/</id>
+<author>
+  <name>Andrey Kostenko</name>
+  <uri>/</uri>
+  <email>akoste01@gmail.com</email>
+</author>
+
+
+<entry>
+  <title type="html"><![CDATA[Outliers and the correlation coefficient]]></title>
+ <link rel="alternate" type="text/html" href="/outliers-and-the-correlation-coefficient/" />
+  <id>/outliers-and-the-correlation-coefficient</id>
+  <published>2015-08-31T00:00:00+00:00</published>
+  <updated>2015-08-31T00:00:00+00:00</updated>
+  <author>
+    <name>Andrey Kostenko</name>
+    <uri></uri>
+    <email>akoste01@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;I was asked to illustrate the adverse effect of outliers on the standard sample correlation coefficient and show how the use of robust measures of correlation (association) could help when there is a need to automate the analysis. The post may be of interest to people with little background in statistics or data analysis.&lt;/p&gt;
+&lt;h1 id=&quot;outliers-and-the-correlation-coefficient&quot;&gt;Outliers and the correlation coefficient&lt;/h1&gt;
+&lt;p&gt;Let’s begin with a dataset showing Highway death rates (per 100 million vehicle miles of travel) and maximum speed limits in 10 countries, as previously published by &lt;span class=&quot;citation&quot; data-cites=&quot;Rivkin86&quot;&gt;Rivkin (1986)&lt;/span&gt;. The dataset is likely to be from the time when the United States had a maximum speed limit of 55 miles per hour.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;cs&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Norway&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;United States&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Finland&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Britain&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Denmark&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;&amp;quot;Canada&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Japan&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Australia&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Netherlands&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Italy&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+dr&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3.4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4.7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4.9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;6.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+sl&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;55&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;55&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;55&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;70&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;55&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;55&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;75&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+df&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;data.frame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;death_rate&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;dr&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;speed_limit&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;sl&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kp&quot;&gt;rownames&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;df&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;cs
+df&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;##               death_rate speed_limit
+## Norway               3.0          55
+## United States        3.3          55
+## Finland              3.4          55
+## Britain              3.5          70
+## Denmark              4.1          55
+## Canada               4.3          60
+## Japan                4.7          55
+## Australia            4.9          60
+## Netherlands          5.1          60
+## Italy                6.1          75&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Among the questions that can be asked here are whether there is a correlation between speed limit and death rate and whether lower speed limits reduce the highway death rate.&lt;/p&gt;
+&lt;p&gt;It can be shown that the sample correlation coefficient for death rate and speed limit is 0.55&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;&lt;span class=&quot;kp&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;df&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;death_rate&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;speed_limit&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## 
+##  Pearson&amp;#39;s product-moment correlation
+## 
+## data:  death_rate and speed_limit
+## t = 1.8546, df = 8, p-value = 0.1008
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.1241625  0.8756458
+## sample estimates:
+##     cor 
+## 0.54833&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;but if Italy alone is removed, it drops to 0.098&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;&lt;span class=&quot;kp&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;df&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,],&lt;/span&gt;cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;death_rate&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;speed_limit&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#or df[rownames(df)!=&amp;quot;Italy&amp;quot;,]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## 
+##  Pearson&amp;#39;s product-moment correlation
+## 
+## data:  death_rate and speed_limit
+## t = 0.26013, df = 7, p-value = 0.8022
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.6056285  0.7154765
+## sample estimates:
+##        cor 
+## 0.09784921&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;and if then Britain is removed, it jumps to 0.70&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;&lt;span class=&quot;kp&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;df&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),],&lt;/span&gt;cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;death_rate&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;speed_limit&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## 
+##  Pearson&amp;#39;s product-moment correlation
+## 
+## data:  death_rate and speed_limit
+## t = 2.3869, df = 6, p-value = 0.05425
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.01332986  0.94019351
+## sample estimates:
+##       cor 
+## 0.6978986&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;By removing only Britain, one can have the sample correlation as high as 0.81, and unlike with all the above cases, the coefficient is statistically significant:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;&lt;span class=&quot;kp&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;df&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,],&lt;/span&gt;cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;death_rate&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;speed_limit&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## 
+##  Pearson&amp;#39;s product-moment correlation
+## 
+## data:  death_rate and speed_limit
+## t = 3.7102, df = 7, p-value = 0.007553
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.3267378 0.9594924
+## sample estimates:
+##       cor 
+## 0.8141862&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The above shows that outliers can easily deflate or inflate the sample correlation coefficient. Usually, an outlier that is consistent with the trend of the vast majority of the data will inflate the correlation (see the bottom-right quadrant of Fig. 1 below), and an outlier that is not consistent with the rest of the data can substantially decrease the correlation (see the top-right quadrant).&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;par&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;mfrow&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+plot&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;df&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;all ten countires present: r=0.55&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+plot&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;df&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,],&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;only Italy removed: r=0.098&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+plot&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;df&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),],&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Italy and Britain removed: r=0.70&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+plot&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;df&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,],&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;only Britain removed: r=0.81&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;figure&gt;
+&lt;figcaption&gt;
+&lt;div style=&quot;text-align: center !important;
+        font-style: italic;
+  text-indent: 0;
+  &quot;&gt;
+Figure 1. The effect of outliers on the sample correlation
+&lt;/div&gt;
+&lt;/figcaption&gt;
+&lt;img src=&quot;/figures/Outliers_and_the_correlation_coefficient_plot1-1.svg&quot;&gt;
+&lt;/figure&gt;
+&lt;p&gt;This high sensitivity of the sample correlation coefficient to outliers is well-known and may complicates the analysis that otherwise can be easily automated. There are generally two approaches here: 1) remove the outliers and 2) use measures of correlation and association that are robust to outliers. Of course, a combination can always be used, but when considering automating the process the latter is usually preferred.&lt;/p&gt;
+&lt;h1 id=&quot;robust-alternatives&quot;&gt;Robust alternatives&lt;/h1&gt;
+&lt;p&gt;It will be convenient to introduce the robust versions of the Pearson’s product-moment correlation coefficient by considering another dataset, the one that shows average brain and body weights for 28 species of land animals. R package MASS has a number of datasets useful for demonstrating various aspects of statistical methods. To see them all, just type &lt;em&gt;data(package=“MASS”)&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;&lt;span class=&quot;kn&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;MASS&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+par&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;mfrow&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;mar&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+plot&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;Animals&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;Animals&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;brain&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+plot&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;Animals&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;Animals&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;brain&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;log&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;xy&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;figure&gt;
+&lt;figcaption&gt;
+&lt;div style=&quot;text-align: center !important;
+        font-style: italic;
+  text-indent: 0;
+  &quot;&gt;
+Figure 2. Linear and log-log plots of the data
+&lt;/div&gt;
+&lt;/figcaption&gt;
+&lt;img src=&quot;/figures/Outliers_and_the_correlation_coefficient_plot2-1.svg&quot;&gt;
+&lt;/figure&gt;
+&lt;p&gt;The linear plot on the left is not very informative thanks to a few outliers (elephants and humans), but the log-log plot shows rather a strong correlation between the two weights, which can be readily quantified with the R’s &lt;em&gt;cor.test()&lt;/em&gt; function. Without the use of attach(), there are three common ways to use the function with data:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;Animals&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;Animals&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;brain&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kp&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;Animals&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; brain&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;brain&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;data&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Animals&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The last approach uses the so-called formula interface, for which the function has a registered S3 method. All three give&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## 
+##  Pearson&amp;#39;s product-moment correlation
+## 
+## data:  body and brain
+## t = -0.027235, df = 26, p-value = 0.9785
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.3776655  0.3684700
+## sample estimates:
+##          cor 
+## -0.005341163&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;showing practically zero correlation, thereby contradicting the relationship clearly present on the log-log plot. This situation can be reconciled by using correlation (measures of association) other than that of Pearson. The &lt;em&gt;cor.test()&lt;/em&gt; function can also compute Spearman’s rank correlation rho and Kendall rank correlation tau. All what is required is overwriting the default value of the &lt;em&gt;method&lt;/em&gt; parameter:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;brain&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;data&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Animals&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; method &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;spearman&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;exact&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;FALSE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## 
+##  Spearman&amp;#39;s rank correlation rho
+## 
+## data:  body and brain
+## S = 1036.6, p-value = 1.813e-05
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.7162994&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;brain&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;data&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Animals&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; method &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;kendall&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; exact&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;FALSE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## 
+##  Kendall&amp;#39;s rank correlation tau
+## 
+## data:  body and brain
+## z = 4.6042, p-value = 4.141e-06
+## alternative hypothesis: true tau is not equal to 0
+## sample estimates:
+##       tau 
+## 0.6172191&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The two results are now more consistent with what the log-log plot suggests. The effect of &lt;em&gt;exact=FALSE&lt;/em&gt; could also be achieved by the use of &lt;em&gt;suppressWarnings()&lt;/em&gt; function to drop the warnings about the ties on observations that prevent calculation of exact p-values (so only approximations are returned), the issue that is of little interest to us now.&lt;/p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;To conclude, outliers can distort the output of classical statistical methods to the extent that wrong conclusions can be made. There are generally two approaches to this problem: detect and then exclude the outliers from an analysis to be conducted with standard methods, or make use of the methods that are robust to outliers and other influential observations. A number of robust methods exist, for example, for regression modelling, of which the calculation of the sample correlation coefficients can be considered a special case. The second approach may often be preferred for automated solutions, as correctly detecting and removing outliers is in most cases difficult.&lt;/p&gt;
+&lt;h1 id=&quot;references&quot; class=&quot;references unnumbered&quot;&gt;References&lt;/h1&gt;
+&lt;div id=&quot;ref-Rivkin86&quot;&gt;
+&lt;p&gt;Rivkin, D. J. (1986). Fifty-five mph speed limit is no safety guarantee. &lt;em&gt;New York Times (Letters to the Editor)&lt;/em&gt;, &lt;em&gt;25&lt;/em&gt;, p. 26.&lt;/p&gt;
+&lt;/div&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/outliers-and-the-correlation-coefficient/&quot;&gt;Outliers and the correlation coefficient&lt;/a&gt; was originally published by Andrey Kostenko at &lt;a href=&quot;&quot;&gt;Andrey Kostenko Analytics&lt;/a&gt; on August 31, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Useful SAS books short-listed]]></title>
+ <link rel="alternate" type="text/html" href="/Useful-SAS-books-shortlisted/" />
+  <id>/Useful-SAS-books-shortlisted</id>
+  <updated>2015-02-13T00:00:00-00:00</updated>
+  <published>2015-01-05T00:00:00+00:00</published>
+  
+  <author>
+    <name>Andrey Kostenko</name>
+    <uri></uri>
+    <email>akoste01@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;A time ago the Western Power’s System Forecasting team, where I now belong in, initiated an upgrade of the software used for data analysis and forecasting. Several options were considered, including SPSS Modeller and a few industry specific options, but the final decision was to use SAS.&lt;/p&gt;
+&lt;p&gt;One reason for this desirable shift (R was not considered a suitable option) was to make use of advanced data techniques and models to quickly build reliable and accurate forecasts to improve business decisions. &lt;a href=&quot;http://www.sas.com/en_us/industry/utilities.html#energy-forecasting&quot; target=&quot;_blank&quot;&gt; SAS Institute claims &lt;/a&gt; their current technologies can convert “&lt;em&gt;transactional meter and operational systems data into a forecast-ready format&lt;/em&gt;”, which is exactly what the team required. However, for a corporation as big as Western Power, it may take another few years before all SAS components required to achieve this goal can be properly integrated and optimised. This time can be used to learn how to use SAS most efficiently and effectively.&lt;/p&gt;
+&lt;p&gt;There are many on-line resources with plenty of code available to help one learn SAS for free, e.g. &lt;a href=&quot;http://www.ats.ucla.edu/stat/sas/modules/&quot; title=&quot;UCLA&amp;#39;s SAS learning modules&quot;&gt;UCLA’s SAS learning modules&lt;/a&gt; and &lt;a href=&quot;http://robslink.com/SAS/Home.htm&quot; title=&quot;Robert Allison&amp;#39;s SAS/Graph examples&quot;&gt;Robert Allison’s SAS/Graph examples&lt;/a&gt;, but books published by SAS Press may remain the best learning option for beginners. It is the purpose of this post to list the books that are likely to be useful for the type of tasks the team performs now and will be expected to perform in the near future.&lt;/p&gt;
+&lt;p&gt;The list is not meant to be exhaustive, and in particular it does not include some older books on time series forecasting. More recent books on time series analysis, forecasting and predictive modelling are in as most relevant. The general programming books (functions, macros) are useful for developing a general understanding of and intuition about the particularities of the SAS programming language. The book on statistical programming with SAS/IML (Interactive Matrix Language) contains many examples of using R from within SAS environment. The two books on SQL will help learn how to interact with the company’s databases. There is also a book devoted solely to reports, which I think should not be ignored, and a book on techniques useful for cleaning data.&lt;/p&gt;
+&lt;p&gt;The list includes 12 items, and the first few have already been purchased:&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-check-square-o fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/Predictive-Modeling-SAS-Enterprise-Miner/dp/1607647672&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;Predictive Modeling with SAS Enterprise Miner: Practical Solutions for Business Applications&lt;/strong&gt; by &lt;em&gt;Kattamuri S. Sarma&lt;/em&gt;, 2nd ed., 2013.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-check-square-o fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/Applied-Data-Mining-Forecasting-Using/dp/1607646625&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;Applied Data Mining for Forecasting Using SAS&lt;/strong&gt; by &lt;em&gt;Tim Rey, Arthur Kordon, and Chip Wells&lt;/em&gt;, 2012&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-check-square-o fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/SAS-Functions-Example-Second-Edition/dp/1607643405&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;SAS functions by example&lt;/strong&gt; by &lt;em&gt;Ron Code&lt;/em&gt;, 2nd ed., 2010&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-check-square-o fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/Forecasting-Time-Series-Second-Edition/dp/1590471822&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;SAS for Forecasting Time Series&lt;/strong&gt; by &lt;em&gt;John C. Brocklebank and David A. Dickey&lt;/em&gt;, 2nd ed., 2003&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-book fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/gp/product/1612901700/&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;Practical Time Series Analysis Using SAS&lt;/strong&gt; by &lt;em&gt;Anders Milhoj&lt;/em&gt;, 2013&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-book fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/PROC-REPORT-Example-Techniques-Professional/dp/1612907849&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;PROC REPORT by Example: Techniques for Building Professional Reports Using SAS&lt;/strong&gt;, by &lt;em&gt;Lisa Fine&lt;/em&gt;, 2013&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-book fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/PROC-SQL-Beyond-Basics-Edition/dp/1612900275&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;PROC SQL: Beyond the Basics Using SAS&lt;/strong&gt; by &lt;em&gt;Kirk Paul Lafler&lt;/em&gt;, 2nd ed., 2013&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-book fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/Programming-Enterprise-Guide-Second-Edition/dp/1607645289&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;SAS Programming for Enterprise Guide Users&lt;/strong&gt; by &lt;em&gt;Neil Constable&lt;/em&gt;, 2nd ed., 2010&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-book fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/Statistical-Programming-SAS-IML-Software/dp/1607646633&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;Statistical Programming with SAS/IML Software&lt;/strong&gt; by &lt;em&gt;Rick Wicklin&lt;/em&gt;, 2010&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-book fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/Codys-Cleaning-Techniques-Second-Edition/dp/1599946599&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;Cody’s Data Cleaning Techniques Using SAS&lt;/strong&gt; by &lt;em&gt;Ron Cody&lt;/em&gt;, 2nd ed., 2008&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-book fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/PROC-SQL-Example-Using-within/dp/1599942976&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;PROC SQL by Example: Using SQL within SAS&lt;/strong&gt; by &lt;em&gt;Howard Schreier&lt;/em&gt;, 2008&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;i class=&quot;fa fa-book fa-lg&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://www.amazon.com/Macro-Programming-Made-Second-Edition/dp/1590478827&quot; target=&quot;_blank&quot;&gt; &lt;/a&gt; &lt;strong&gt;SAS Macro Programming Made Easy&lt;/strong&gt; by &lt;em&gt;Michele Burlew&lt;/em&gt;, 2nd ed., 2007&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;references&quot;&gt;
+
+&lt;/div&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/Useful-SAS-books-shortlisted/&quot;&gt;Useful SAS books short-listed&lt;/a&gt; was originally published by Andrey Kostenko at &lt;a href=&quot;&quot;&gt;Andrey Kostenko Analytics&lt;/a&gt; on January 05, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Motivational quotes from my PhD thesis]]></title>
+ <link rel="alternate" type="text/html" href="/Motivational-quotes-from-my-thesis/" />
+  <id>/Motivational-quotes-from-my-thesis</id>
+  <published>2015-01-02T00:00:00+00:00</published>
+  <updated>2015-01-02T00:00:00+00:00</updated>
+  <author>
+    <name>Andrey Kostenko</name>
+    <uri></uri>
+    <email>akoste01@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;This quick post is largely for testing purposes. It shares four motivational quotes that I carefully selected for the introductory page of the front matter of my PhD thesis.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;The thesis, entitled &lt;em&gt;Statistical issues in modelling and forecasting sequential count data&lt;/em&gt;, was examined by Prof James Taylor of Oxford University and Prof Williams Dunsmuir of the University of New South Wales. I plan to use this blog to revisit some of the main points made there, but for now here are the promised quotations in the original order.&lt;/p&gt;
+&lt;figure class=&quot;half&quot;&gt;
+&lt;div id=&quot;container2&quot;&gt;
+&lt;div id=&quot;container1&quot;&gt;
+&lt;div id=&quot;col1&quot;&gt;
+&lt;figure&gt;
+&lt;img src=&quot;http://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;div id=&quot;col2&quot;&gt;
+&lt;p&gt;&lt;blockquote2&gt; It is not knowledge, but the act of learning, not possession but the act of getting there, which grants the greatest enjoyment. When I have clarified and exhausted a subject, then I turn away from it, in order to go into darkness again; the never-satisfied man is so strange if he has completed a structure, then it is not in order to dwell in it peacefully, but in order to begin another. I imagine the world conqueror must feel thus, who, after one kingdom is scarcely conquered, stretches out his arms for others. &lt;cite&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss&quot; target=&quot;_blank&quot;&gt;Karl Gauss &lt;/a&gt;&lt;/cite&gt; &lt;/blockquote2&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+&lt;div id=&quot;container2&quot;&gt;
+&lt;div id=&quot;container1&quot;&gt;
+&lt;div id=&quot;col1&quot;&gt;
+&lt;figure&gt;
+&lt;img src=&quot;http://upload.wikimedia.org/wikipedia/commons/9/9c/Sir_Winston_S_Churchill.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;div id=&quot;col2&quot;&gt;
+&lt;p&gt;&lt;blockquote2&gt; Every day you may make progress. Every step may be fruitful. Yet there will stretch out before you an ever-lengthening, ever-ascending, ever-improving path. You know you will never get to the end of the journey. But this, so far from discouraging, only adds to the joy and glory of the climb. &lt;cite&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Winston_Churchill&quot; target=&quot;_blank&quot;&gt;Winston Churchill &lt;/a&gt;&lt;/cite&gt; &lt;/blockquote2&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+&lt;div id=&quot;container2&quot;&gt;
+&lt;div id=&quot;container1&quot;&gt;
+&lt;div id=&quot;col1&quot;&gt;
+&lt;figure&gt;
+&lt;img src=&quot;http://upload.wikimedia.org/wikipedia/commons/4/48/Ralph_Waldo_Emerson_cph.3b20760.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;div id=&quot;col2&quot;&gt;
+&lt;p&gt;&lt;blockquote2&gt; Finish each day and be done with it. You have done what you could. Some blunders and absurdities no doubt crept in, forget them as soon as you can. Tomorrow is a new day, you shall begin it well and serenely… &lt;cite&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Ralph_Waldo_Emerson&quot; target=&quot;_blank&quot;&gt;Ralph Waldo Emerson&lt;/a&gt;&lt;/cite&gt; &lt;/blockquote2&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+&lt;div id=&quot;container2&quot;&gt;
+&lt;div id=&quot;container1&quot;&gt;
+&lt;div id=&quot;col1&quot;&gt;
+&lt;figure&gt;
+&lt;img src=&quot;http://upload.wikimedia.org/wikipedia/commons/a/ae/Paul_Halmos.jpeg&quot; alt=&quot;&quot; /&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;div id=&quot;col2&quot;&gt;
+&lt;p&gt;&lt;blockquote2&gt; You can’t be perfect, but if you don’t try, you won’t be good enough. &lt;cite&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Paul_Halmos&quot; target=&quot;_blank&quot;&gt;Paul Halmos&lt;/a&gt;&lt;/cite&gt; &lt;/blockquote2&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/figure&gt;
+&lt;p&gt;
+We all procrastinate from time to time, and my favourite way to do that while working on my thesis was to read much of what Paul Halmos wrote. The quickest way to learn what he wrote about, and how, is probably by reading &lt;a href=&quot;http://www.ams.org/notices/200709/tx070901136p.pdf&quot; target=&quot;_blank&quot;&gt; this article &lt;/a&gt; by John Ewing.
+&lt;/p&gt;
+&lt;style&gt;
+blockquote2 {
+font-family: Georgia, serif;
+font-size: 18px;
+font-style: italic;
+margin: 0.25em 0;
+padding: 0.15em 20px;
+line-height: 1.45;
+position: relative;
+color: #383838;
+}
+
+blockquote2:before {
+  color:  #7a7a7a;
+  content: &quot;\201C&quot;;
+  font-size: 3em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+
+blockquote2 cite {
+color: #7a7a7a;;
+font-size: 1em;
+display: block;
+margin-top: 5px;
+}
+ 
+blockquote2 cite:before {
+content: &quot;\2014 \2009&quot;;
+}
+
+#container2 {
+    clear:left;
+    float:left;
+    width:100%;
+    overflow:hidden;
+background:#FFFFF0; column 2 background colour
+}
+#container1 {
+    float:left;
+    width:100%;
+    position:relative;
+    right:50%;
+background:#FADE3E; column 1 background colour 
+}
+#col1 {
+    float:left;
+    width:46%;
+    position:relative;
+    left:52%;
+    overflow:hidden;
+}
+#col2 {
+    text-align: justify;
+    float:left;
+    width:46%;
+    position:relative;
+    left:56%;
+    overflow:hidden;
+}
+&lt;/style&gt;
+&lt;div class=&quot;references&quot;&gt;
+
+&lt;/div&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/Motivational-quotes-from-my-thesis/&quot;&gt;Motivational quotes from my PhD thesis&lt;/a&gt; was originally published by Andrey Kostenko at &lt;a href=&quot;&quot;&gt;Andrey Kostenko Analytics&lt;/a&gt; on January 02, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+</feed>
