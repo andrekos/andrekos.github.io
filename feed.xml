@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-08-31T13:10:16+00:00</updated>
+<updated>2015-08-31T13:27:49+00:00</updated>
 <id>/</id>
 <author>
   <name>Andrey Kostenko</name>
@@ -25,7 +25,7 @@
     <email>akoste01@gmail.com</email>
   </author>
   <content type="html">
-    &lt;p&gt;I was asked to illustrate the adverse effect of outliers on the standard sample correlation coefficient and show how the use of robust measures of correlation (association) could help when there is a need to automate the analysis. The post may be of interest to people with little background in statistics or data analysis.&lt;/p&gt;
+    &lt;p&gt;I was asked to illustrate how outliers can affect the standard sample correlation coefficient and show how the use of robust measures of correlation (association) could help when there is a need to automate the analysis. The post may be of interest to people with little background in statistics or data analysis.&lt;/p&gt;
 &lt;h1 id=&quot;outliers-and-the-correlation-coefficient&quot;&gt;Outliers and the correlation coefficient&lt;/h1&gt;
 &lt;p&gt;Let’s begin with a dataset showing Highway death rates (per 100 million vehicle miles of travel) and maximum speed limits in 10 countries, as previously published by &lt;span class=&quot;citation&quot; data-cites=&quot;Rivkin86&quot;&gt;Rivkin (1986)&lt;/span&gt;. The dataset is likely to be from the time when the United States had a maximum speed limit of 55 miles per hour.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;
