@@ -1,0 +1,383 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Types of forecast: ex ante vs ex post &#8211; Andrey Kostenko Analytics</title>
+<meta name="description" content="Andrey's web place">
+<meta name="keywords" content="forecast, accuracy, terminology">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="/images/gb250a.jpg">
+
+<meta name="twitter:title" content="Types of forecast: ex ante vs ex post">
+<meta name="twitter:description" content="Andrey's web place">
+<meta name="twitter:creator" content="@andkostenko">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Types of forecast: ex ante vs ex post">
+<meta property="og:description" content="Andrey's web place">
+<meta property="og:url" content="/types-of-forecasts-ex-ante-vs-ex-post/">
+<meta property="og:site_name" content="Andrey Kostenko Analytics">
+
+
+
+
+
+<link rel="canonical" href="/types-of-forecasts-ex-ante-vs-ex-post/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Andrey Kostenko Analytics Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/custom.css">
+ 
+<!-- Webfonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="post" class="feature">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<style>
+.sidebar-logo {
+	padding: 0.7rem;
+}
+
+.sidebar-logo img {
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	width: 160px;
+	margin: 0 auto;
+}
+</style>
+
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="/"> <i class="fa fa-home"></i> &nbsp; Home</a></li>
+		<li>
+			<a href="#"> <i class="fa fa-black-tie"></i> &nbsp; About</a>
+			<ul class="dl-submenu">
+				<li>
+				<div class="sidebar-logo">
+					<img src="http://www.gravatar.com/avatar/e655644c76ac05c7ef534baf5bf7a096?s=120" alt="Andrey Kostenko photo" class="author-photo"/>
+					</div>
+					<h4>Andrey Kostenko</h4>
+					<p>Statistical Modelling,<br> Predictive Analytics,<br> Machine Learning,<br> Data Science ...</p>
+				</li>
+				<li><a href="/about/"><span class="btn btn-inverse">More Info</span></a></li>
+				   
+				   
+				   
+				   
+				   <li>
+					<a href="http://linkedin.com/in/akoste01"><span class="fa-stack fa-lg">
+                    <i class="fa fa-square-o fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x"></i>
+                    </span> &nbsp; LinkedIn</a>
+				</li>
+				
+				<li>
+					<a href="https://google.com/+AndreyKostenkoDr"><span class="fa-stack fa-lg">
+                    <i class="fa fa-square-o fa-stack-2x"></i>
+                    <i class="fa fa-google-plus fa-stack-1x"></i>
+                    </span> &nbsp; Google+</a>
+				</li>
+				
+								<li>
+					<a href="http://github.com/andrekos"><span class="fa-stack fa-lg">
+					<i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-github-alt fa-stack-1x"></i>
+					</span>
+					&nbsp; GitHub</a>
+				</li>
+				
+								<li>
+					<a href="http://twitter.com/andkostenko"><span class="fa-stack fa-lg">
+					<i class="fa fa-square-o fa-stack-2x"></i>
+					<i class="fa fa-twitter fa-stack-1x"></i>
+					</span> &nbsp; Twitter </a>
+				</li>
+				
+				<li>
+					<a href="http://feeds.andreykostenko.com/andreykostenko"><span class="fa-stack fa-lg">
+					<i class="fa fa-square-o fa-stack-2x"></i>
+					<i class="fa fa-rss fa-stack-1x"></i>
+					</span> &nbsp; RSS </a>
+				</li>
+								
+				
+				<li>
+					<a href="mailto:akoste01@gmail.com"><span class="fa-stack fa-lg">
+                    <i class="fa fa-square-o fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x"></i>
+                    </span> &nbsp; Email</a>
+				</li>
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#"> <i class="fa fa-archive"></i> &nbsp; Archive</a>
+			<ul class="dl-submenu">
+				<li><a href="/posts/"> <i class="fa fa-list"></i> &nbsp; All Posts</a></li>
+				<li><a href="/tags/"> <i class="fa fa-tags"></i> &nbsp; All Tags</a></li>
+				<li><a href="/categories/"> <i class="fa fa-th"></i> &nbsp; All Categories</a></li>
+			</ul>
+		</li>
+        
+        	<li>
+			<a href="#"> <i class="fa fa-line-chart"></i> &nbsp; R </a>
+			<ul class="dl-submenu">
+				<li><a href="/WARG/"> <i class="fa fa-users"></i> &nbsp; WARG</a></li>
+			</ul>
+		</li>
+        
+             <li>
+			<a href="#"> <i class="fa fa-bar-chart"></i> &nbsp; SAS </a>
+			<ul class="dl-submenu">
+				<li><a href="#"> <i class="fa fa-question-circle"></i> &nbsp; Coming soon!</a></li>
+			</ul>
+		</li>
+        
+		
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+<div class="entry-header">
+<!--  -->
+    
+
+    
+<div class="image-credit">   
+    
+    <a href=/categories/#forecasting 101 title="posts in this category"> <span style="color: white;font-size: 150%;"> &#9679; FORECASTING 101 &#20; </span> </a>
+
+    </div>
+    
+
+    
+    
+  <div class="entry-image">
+    <img src="/images/gb250a.jpg" alt="Types of forecast: ex ante vs ex post">
+  </div><!-- /.entry-image -->
+</div><!-- /.entry-header -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title"><a href="/types-of-forecasts-ex-ante-vs-ex-post/" rel="bookmark" title="Types of forecast: ex ante vs ex post">Types of forecast: ex ante vs ex post</a></h1>
+        
+        <h2><span class="entry-date date published"><time datetime="2015-09-06T00:00:00+00:00">September 06, 2015</time></span></h2>
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <p>Ex ante forecast is a forecast based solely on information available at the time of the forecast, whereas ex post forecast is a forecast that uses information beyond the time at which the forecast is made. Let’s discuss the two in more detail, as in different contexts the terms may mean slightly different things.</p>
+<style type="text/css">
+blockquote {font-family: Comic Sans MS; font-style: italic;font-size: 15px;}
+</style>
+<h1 id="introduction">Introduction</h1>
+<p>Only one thing is true about forecasts - they are always wrong. Any forecast <span class="math inline">\(\hat{Y}_t\)</span> of the actual value <span class="math inline">\(Y_t\)</span> is associated with the forecast error <span class="math inline">\(e_t = Y_t − \hat{Y}_t\)</span>. The art and science of forecasting is all about bringing these forecast errors down to zero, as close as possible, for all future values of <span class="math inline">\(t\)</span>. Doing this first for some of the past values of <span class="math inline">\(t\)</span> is often a useful exercise for developing a better forecasting model. It is this distinction between future and past values of <span class="math inline">\(t\)</span> that underlines the distinction between two types of forecast: ex post forecasts and ex ante forecasts.</p>
+<p>The terms <em>ex ante</em> and <em>ex post</em> are among those few words in the forecasting literature that a general reader is unlikely to understand without first learning what they in fact mean. To see how the term <em>ex ante</em> have been used in the forecasting literature, check out the following excerpts:</p>
+<blockquote style="font-family: Comic Sans MS; font-size: 14px;">
+<ol type="1">
+<li>Empirical results show that this procedure selects models that give reasonable <strong>ex ante</strong> forecast accuracy.</li>
+<li>The models allowing for serial correlation are shown to have the best <strong>ex ante</strong> forecasting performance.</li>
+<li>I looked primarily for studies that used real data to compare the <strong>ex ante</strong> forecasting accuracy of alternative methods.</li>
+<li>They examined the potential benefits of <strong>ex ante</strong> rules when contrasted with model selection based on within-sample model fitting.</li>
+<li>It is not clear to me from reading the paper if the resulting forecasts are true <strong>ex ante</strong> forecasts.</li>
+<li>The forecasts were tested on a holdout <strong>ex ante</strong> sample that was known only to the administrator of the competition.</li>
+<li>It may be, for example, that forecasters are using future information, perhaps inadvertently, so that forecasts are not <strong>ex ante</strong>, and I have known several cases where further study showed that a method was not as good as first suggested.</li>
+<li>The NN3 competition evaluates the <strong>ex ante</strong> accuracy of forecasting the next 18 observations on two homogeneous sets of 111 or 11 time series of varying length and time series patterns on multiple established error metrics.</li>
+<li>No matter how honest our efforts, and no matter how generous our colleagues, as long as comparisons were not genuinely <strong>ex ante</strong> a measure of doubt about our results was inevitable.</li>
+</ol>
+</blockquote>
+<p>In general, ex ante is often used to mean ‘before-the-fact’ and ex post as ‘after-the-fact’. In the forecasting literature, an ex ante forecast is said to be any forecast that uses information available only at the time of the forecast. When a forecast prepared at certain time uses information available after that time, it is said to be an ex post forecast. A typical example of the latter is when known (actual rather than projected) values of external variables (regressors, predictors or drivers) are used in producing forecasts for the hold-out part of a time series. While ex post forecasts may be useful for exploring the properties of the forecasting model, it is ex ante forecasts (and the associated accuracy) that are ultimately important.</p>
+<h1 id="forecasting-univariate-time-series">Forecasting univariate time series</h1>
+<p>In the context of univariate time series forecasting, the difference between ex ante and ex post forecasts is well explained by <span class="citation" data-cites="bChan2010">Chan (2010)</span>. The remainder of this paragraph, including the quote below, follows him almost verbatim.</p>
+<blockquote>
+<p>The ex post forecasts are made when the “future” observations are known during the forecasting period. It is used as a means to check against known data so that the forecasting model can be evaluated. The ex ante forecasts are made beyond the present, when the future observations are not available for checking.</p>
+</blockquote>
+<p>Suppose that we observe <span class="math inline">\(\{Y_1,\dots,Y_n\}\)</span>, so we may use <span class="math inline">\(\{Y_1,\dots,Y_t\}\)</span> for <span class="math inline">\(t &lt; n\)</span> to estimate a model and use the estimated model to forecast <span class="math inline">\(\{Y_{t+1},\dots,Y_n\}\)</span>. These are ex post forecasts since we can use them to compare against the observed <span class="math inline">\(\{Y_{t+1},\dots,Y_n\}\)</span>. The estimation period in this case is <span class="math inline">\(t\)</span>. On the other hand, when we forecast <span class="math inline">\(\{Y_{n+1},\dots,Y_{n+h}\}\)</span> for <span class="math inline">\(h &gt; 0\)</span>, we are doing ex ante forecasts. After fitting a model, we estimate a future value <span class="math inline">\(Y_{n+h}\)</span> at time <span class="math inline">\(n\)</span> by <span class="math inline">\(\hat{Y}_n(h)\)</span> based on the fitted model, while the actual value of <span class="math inline">\(Y_{n+h}\)</span> is unknown.</p>
+<p>Somewhat differently from the above, in the context of univariate time series ex post forecast is sometimes used synonymously with the ‘model fit’ (i.e. small ex post forecast errors are associated with models that fit the data well). For example, according to <span class="citation" data-cites="GM88a">Gardner &amp; McKenzie (1988)</span>, in the 1960s and 1970s, the period of early theoretical development in quantitative forecasting, it was expected that</p>
+<blockquote>
+<p>The better the fit (ex post) of the forecasting model, the better the accuracy (ex ante) should be.</p>
+</blockquote>
+<p>Note that it is well known nowadays that the above statement is in general false. <span class="citation" data-cites="Ledolter10">Ledolter (2010)</span> also uses the term <em>ex post</em> when referring to the in-sample forecast performance:</p>
+<blockquote>
+<p>If sufficient observations are available, one should divide the series into two parts, derive estimates of the parameters that are necessary to construct the forecasts from the first part, and evaluate the accuracy of the ex ante forecasts from the observations in the holdout period. This is important, since models that fit the data well (i.e., have small ex post forecast errors) sometimes perform badly in forecasting, and vice versa.</p>
+</blockquote>
+<h1 id="forecasting-with-external-variables">Forecasting with external variables</h1>
+<p>In the context of time series with external variables ex post forecasts most commonly are forecast made with knowledge of the external variables. This type of forecast can be useful in quantifying the sources of forecast uncertainty, when answering questions like what part of a forecast error is due to a poor forecast of temperature and what part of it should be attributed to the forecasting model itself being imperfect. Quantifying the effect of errors due to the need to use estimated future values of external variables rather than their actual or observed values can often help improve the forecasting model. For example, <span class="citation" data-cites="HF10">Hyndman &amp; Fan (2010)</span> write:</p>
+<blockquote>
+<p>Specifically, ex ante forecasts are the forecasts made in advance using whatever information is available at the time. On the other hand, ex post forecasts are those that are made using information on the “driver variables” that is only known after the event being forecast. The difference between the ex ante forecasts and ex post forecasts will provide a measure of the effectiveness of the model for forecasting (taking out the effect of the forecast errors in the input variables).</p>
+</blockquote>
+<p>It is in this latter context that the distinction between the <em>ex post</em> and <em>ex ante</em> forecast is most useful. The reader of forecasting literature, however, should be aware that some well established names in the forecasting literature may use the terms simply to distinguish between the in-sample forecasts (done as part of the model fitting process) and the out-of-sample forecasts (done as part of the forecast evaluation process).</p>
+<h1 id="references" class="references unnumbered">References</h1>
+<div id="ref-bChan2010">
+<p>Chan, N. H. (2010). <em>Time series applications to finance with R and S-Plus</em> (2nd ed.). John Wiley &amp; Sons. <a href="http://www.sta.cuhk.edu.hk/nhchan" class="uri">http://www.sta.cuhk.edu.hk/nhchan</a></p>
+</div>
+<div id="ref-GM88a">
+<p>Gardner, E. S., &amp; McKenzie, E. (1988). Model identification in exponential smoothing. <em>Journal of the Operational Research Society</em>, <em>39</em>(9), 863–867. <a href="http://doi.org/10.2307/2583529" class="uri">http://doi.org/10.2307/2583529</a></p>
+</div>
+<div id="ref-HF10">
+<p>Hyndman, R. J., &amp; Fan, S. (2010). Density forecasting for long-term peak electricity demand. <em>IEEE Transactions On Power Systems</em>, <em>25</em>(2), 1142–1153. <a href="http://doi.org/10.1109/TPWRS.2009.2036017" class="uri">http://doi.org/10.1109/TPWRS.2009.2036017</a></p>
+</div>
+<div id="ref-Ledolter10">
+<p>Ledolter, J. (2010). Prediction and forecasting. <em>Encyclopedia of Statistical Sciences</em>. <a href="http://doi.org/10.1002/0471667196.ess2046.pub3" class="uri">http://doi.org/10.1002/0471667196.ess2046.pub3</a></p>
+</div>
+
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="/tags/#forecast" title="posts tagged forecast" class="tag"><span class="term">forecast</span></a><a href="/tags/#accuracy" title="posts tagged accuracy" class="tag"><span class="term">accuracy</span></a><a href="/tags/#terminology" title="posts tagged terminology" class="tag"><span class="term">terminology</span></a></span>
+        
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://andreykostenko.com/types-of-forecasts-ex-ante-vs-ex-post/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://andreykostenko.com/types-of-forecasts-ex-ante-vs-ex-post/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://andreykostenko.com/types-of-forecasts-ex-ante-vs-ex-post/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+    <div class="read-more">
+ 
+    <div class="read-more-header">
+        <div style='float: left;'><a href="/outliers-and-the-correlation-coefficient/" title="previous post" class="read-more-btn"> <i class="fa fa-long-arrow-left fa-2x"></i> </a></div>
+        <div style='float: right;'><a href="" title="next post" class="read-more-btn"> <i class="fa fa-long-arrow-right fa-2x"></i> </a> </div>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="/outliers-and-the-correlation-coefficient/" title="Outliers and the correlation coefficient">Outliers and the correlation coefficient</a></h3>
+      <p>I was asked to illustrate how outliers can affect the standard sample correlation coefficient and show how the use of robust measures of ...&hellip; <a href="/outliers-and-the-correlation-coefficient/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="/Useful-SAS-books-shortlisted/" title="Useful SAS books short-listed">Useful SAS books short-listed</a></h4>
+        <span>Published on January 05, 2015</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="/Motivational-quotes-from-my-thesis/" title="Motivational quotes from my PhD thesis">Motivational quotes from my PhD thesis</a></h4>
+        <span>Published on January 02, 2015</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+  
+        
+</div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>Copyright &copy; 2015 <span class="author vcard"><span class="fn"><a href="/about/" title="About Andrey Kostenko">Andrey Kostenko</a></span></span>. 
+    Some rights reserved. 
+Powered by <a href="http://jekyllrb.com" rel="nofollow" target="blank" >Jekyll</a>,
+based on <a href="http://mademistakes.com/hpstr/" rel="notfollow" target="blank">HPSTR</a>, 
+hosted at <a href="http://github.com" rel="nofollow" target="blank">GitHub</a>.</span>
+
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--
+ <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+-->
+ <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!--
+ <script type="text/javascript" src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-collapse.js"></script>  
+ -->
+
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'andrekos'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	        
+
+</body>
+</html>

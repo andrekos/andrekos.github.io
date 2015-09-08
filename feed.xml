@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-09-04T15:18:53+00:00</updated>
+<updated>2015-09-08T22:18:11+00:00</updated>
 <id>/</id>
 <author>
   <name>Andrey Kostenko</name>
@@ -14,11 +14,83 @@
 
 
 <entry>
+  <title type="html"><![CDATA[Types of forecast: ex ante vs ex post]]></title>
+ <link rel="alternate" type="text/html" href="/types-of-forecasts-ex-ante-vs-ex-post/" />
+  <id>/types-of-forecasts-ex-ante-vs-ex-post</id>
+  <published>2015-09-06T00:00:00+00:00</published>
+  <updated>2015-09-06T00:00:00+00:00</updated>
+  <author>
+    <name>Andrey Kostenko</name>
+    <uri></uri>
+    <email>akoste01@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;Ex ante forecast is a forecast based solely on information available at the time of the forecast, whereas ex post forecast is a forecast that uses information beyond the time at which the forecast is made. Let’s discuss the two in more detail, as in different contexts the terms may mean slightly different things.&lt;/p&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+blockquote {font-family: Comic Sans MS; font-style: italic;font-size: 15px;}
+&lt;/style&gt;
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;Only one thing is true about forecasts - they are always wrong. Any forecast &lt;span class=&quot;math inline&quot;&gt;\(\hat{Y}_t\)&lt;/span&gt; of the actual value &lt;span class=&quot;math inline&quot;&gt;\(Y_t\)&lt;/span&gt; is associated with the forecast error &lt;span class=&quot;math inline&quot;&gt;\(e_t = Y_t − \hat{Y}_t\)&lt;/span&gt;. The art and science of forecasting is all about bringing these forecast errors down to zero, as close as possible, for all future values of &lt;span class=&quot;math inline&quot;&gt;\(t\)&lt;/span&gt;. Doing this first for some of the past values of &lt;span class=&quot;math inline&quot;&gt;\(t\)&lt;/span&gt; is often a useful exercise for developing a better forecasting model. It is this distinction between future and past values of &lt;span class=&quot;math inline&quot;&gt;\(t\)&lt;/span&gt; that underlines the distinction between two types of forecast: ex post forecasts and ex ante forecasts.&lt;/p&gt;
+&lt;p&gt;The terms &lt;em&gt;ex ante&lt;/em&gt; and &lt;em&gt;ex post&lt;/em&gt; are among those few words in the forecasting literature that a general reader is unlikely to understand without first learning what they in fact mean. To see how the term &lt;em&gt;ex ante&lt;/em&gt; have been used in the forecasting literature, check out the following excerpts:&lt;/p&gt;
+&lt;blockquote style=&quot;font-family: Comic Sans MS; font-size: 14px;&quot;&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;Empirical results show that this procedure selects models that give reasonable &lt;strong&gt;ex ante&lt;/strong&gt; forecast accuracy.&lt;/li&gt;
+&lt;li&gt;The models allowing for serial correlation are shown to have the best &lt;strong&gt;ex ante&lt;/strong&gt; forecasting performance.&lt;/li&gt;
+&lt;li&gt;I looked primarily for studies that used real data to compare the &lt;strong&gt;ex ante&lt;/strong&gt; forecasting accuracy of alternative methods.&lt;/li&gt;
+&lt;li&gt;They examined the potential benefits of &lt;strong&gt;ex ante&lt;/strong&gt; rules when contrasted with model selection based on within-sample model fitting.&lt;/li&gt;
+&lt;li&gt;It is not clear to me from reading the paper if the resulting forecasts are true &lt;strong&gt;ex ante&lt;/strong&gt; forecasts.&lt;/li&gt;
+&lt;li&gt;The forecasts were tested on a holdout &lt;strong&gt;ex ante&lt;/strong&gt; sample that was known only to the administrator of the competition.&lt;/li&gt;
+&lt;li&gt;It may be, for example, that forecasters are using future information, perhaps inadvertently, so that forecasts are not &lt;strong&gt;ex ante&lt;/strong&gt;, and I have known several cases where further study showed that a method was not as good as first suggested.&lt;/li&gt;
+&lt;li&gt;The NN3 competition evaluates the &lt;strong&gt;ex ante&lt;/strong&gt; accuracy of forecasting the next 18 observations on two homogeneous sets of 111 or 11 time series of varying length and time series patterns on multiple established error metrics.&lt;/li&gt;
+&lt;li&gt;No matter how honest our efforts, and no matter how generous our colleagues, as long as comparisons were not genuinely &lt;strong&gt;ex ante&lt;/strong&gt; a measure of doubt about our results was inevitable.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In general, ex ante is often used to mean ‘before-the-fact’ and ex post as ‘after-the-fact’. In the forecasting literature, an ex ante forecast is said to be any forecast that uses information available only at the time of the forecast. When a forecast prepared at certain time uses information available after that time, it is said to be an ex post forecast. A typical example of the latter is when known (actual rather than projected) values of external variables (regressors, predictors or drivers) are used in producing forecasts for the hold-out part of a time series. While ex post forecasts may be useful for exploring the properties of the forecasting model, it is ex ante forecasts (and the associated accuracy) that are ultimately important.&lt;/p&gt;
+&lt;h1 id=&quot;forecasting-univariate-time-series&quot;&gt;Forecasting univariate time series&lt;/h1&gt;
+&lt;p&gt;In the context of univariate time series forecasting, the difference between ex ante and ex post forecasts is well explained by &lt;span class=&quot;citation&quot; data-cites=&quot;bChan2010&quot;&gt;Chan (2010)&lt;/span&gt;. The remainder of this paragraph, including the quote below, follows him almost verbatim.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The ex post forecasts are made when the “future” observations are known during the forecasting period. It is used as a means to check against known data so that the forecasting model can be evaluated. The ex ante forecasts are made beyond the present, when the future observations are not available for checking.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Suppose that we observe &lt;span class=&quot;math inline&quot;&gt;\(\{Y_1,\dots,Y_n\}\)&lt;/span&gt;, so we may use &lt;span class=&quot;math inline&quot;&gt;\(\{Y_1,\dots,Y_t\}\)&lt;/span&gt; for &lt;span class=&quot;math inline&quot;&gt;\(t &amp;lt; n\)&lt;/span&gt; to estimate a model and use the estimated model to forecast &lt;span class=&quot;math inline&quot;&gt;\(\{Y_{t+1},\dots,Y_n\}\)&lt;/span&gt;. These are ex post forecasts since we can use them to compare against the observed &lt;span class=&quot;math inline&quot;&gt;\(\{Y_{t+1},\dots,Y_n\}\)&lt;/span&gt;. The estimation period in this case is &lt;span class=&quot;math inline&quot;&gt;\(t\)&lt;/span&gt;. On the other hand, when we forecast &lt;span class=&quot;math inline&quot;&gt;\(\{Y_{n+1},\dots,Y_{n+h}\}\)&lt;/span&gt; for &lt;span class=&quot;math inline&quot;&gt;\(h &amp;gt; 0\)&lt;/span&gt;, we are doing ex ante forecasts. After fitting a model, we estimate a future value &lt;span class=&quot;math inline&quot;&gt;\(Y_{n+h}\)&lt;/span&gt; at time &lt;span class=&quot;math inline&quot;&gt;\(n\)&lt;/span&gt; by &lt;span class=&quot;math inline&quot;&gt;\(\hat{Y}_n(h)\)&lt;/span&gt; based on the fitted model, while the actual value of &lt;span class=&quot;math inline&quot;&gt;\(Y_{n+h}\)&lt;/span&gt; is unknown.&lt;/p&gt;
+&lt;p&gt;Somewhat differently from the above, in the context of univariate time series ex post forecast is sometimes used synonymously with the ‘model fit’ (i.e. small ex post forecast errors are associated with models that fit the data well). For example, according to &lt;span class=&quot;citation&quot; data-cites=&quot;GM88a&quot;&gt;Gardner &amp;amp; McKenzie (1988)&lt;/span&gt;, in the 1960s and 1970s, the period of early theoretical development in quantitative forecasting, it was expected that&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The better the fit (ex post) of the forecasting model, the better the accuracy (ex ante) should be.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Note that it is well known nowadays that the above statement is in general false. &lt;span class=&quot;citation&quot; data-cites=&quot;Ledolter10&quot;&gt;Ledolter (2010)&lt;/span&gt; also uses the term &lt;em&gt;ex post&lt;/em&gt; when referring to the in-sample forecast performance:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If sufficient observations are available, one should divide the series into two parts, derive estimates of the parameters that are necessary to construct the forecasts from the first part, and evaluate the accuracy of the ex ante forecasts from the observations in the holdout period. This is important, since models that fit the data well (i.e., have small ex post forecast errors) sometimes perform badly in forecasting, and vice versa.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;forecasting-with-external-variables&quot;&gt;Forecasting with external variables&lt;/h1&gt;
+&lt;p&gt;In the context of time series with external variables ex post forecasts most commonly are forecast made with knowledge of the external variables. This type of forecast can be useful in quantifying the sources of forecast uncertainty, when answering questions like what part of a forecast error is due to a poor forecast of temperature and what part of it should be attributed to the forecasting model itself being imperfect. Quantifying the effect of errors due to the need to use estimated future values of external variables rather than their actual or observed values can often help improve the forecasting model. For example, &lt;span class=&quot;citation&quot; data-cites=&quot;HF10&quot;&gt;Hyndman &amp;amp; Fan (2010)&lt;/span&gt; write:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Specifically, ex ante forecasts are the forecasts made in advance using whatever information is available at the time. On the other hand, ex post forecasts are those that are made using information on the “driver variables” that is only known after the event being forecast. The difference between the ex ante forecasts and ex post forecasts will provide a measure of the effectiveness of the model for forecasting (taking out the effect of the forecast errors in the input variables).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It is in this latter context that the distinction between the &lt;em&gt;ex post&lt;/em&gt; and &lt;em&gt;ex ante&lt;/em&gt; forecast is most useful. The reader of forecasting literature, however, should be aware that some well established names in the forecasting literature may use the terms simply to distinguish between the in-sample forecasts (done as part of the model fitting process) and the out-of-sample forecasts (done as part of the forecast evaluation process).&lt;/p&gt;
+&lt;h1 id=&quot;references&quot; class=&quot;references unnumbered&quot;&gt;References&lt;/h1&gt;
+&lt;div id=&quot;ref-bChan2010&quot;&gt;
+&lt;p&gt;Chan, N. H. (2010). &lt;em&gt;Time series applications to finance with R and S-Plus&lt;/em&gt; (2nd ed.). John Wiley &amp;amp; Sons. &lt;a href=&quot;http://www.sta.cuhk.edu.hk/nhchan&quot; class=&quot;uri&quot;&gt;http://www.sta.cuhk.edu.hk/nhchan&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;ref-GM88a&quot;&gt;
+&lt;p&gt;Gardner, E. S., &amp;amp; McKenzie, E. (1988). Model identification in exponential smoothing. &lt;em&gt;Journal of the Operational Research Society&lt;/em&gt;, &lt;em&gt;39&lt;/em&gt;(9), 863–867. &lt;a href=&quot;http://doi.org/10.2307/2583529&quot; class=&quot;uri&quot;&gt;http://doi.org/10.2307/2583529&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;ref-HF10&quot;&gt;
+&lt;p&gt;Hyndman, R. J., &amp;amp; Fan, S. (2010). Density forecasting for long-term peak electricity demand. &lt;em&gt;IEEE Transactions On Power Systems&lt;/em&gt;, &lt;em&gt;25&lt;/em&gt;(2), 1142–1153. &lt;a href=&quot;http://doi.org/10.1109/TPWRS.2009.2036017&quot; class=&quot;uri&quot;&gt;http://doi.org/10.1109/TPWRS.2009.2036017&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;ref-Ledolter10&quot;&gt;
+&lt;p&gt;Ledolter, J. (2010). Prediction and forecasting. &lt;em&gt;Encyclopedia of Statistical Sciences&lt;/em&gt;. &lt;a href=&quot;http://doi.org/10.1002/0471667196.ess2046.pub3&quot; class=&quot;uri&quot;&gt;http://doi.org/10.1002/0471667196.ess2046.pub3&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/types-of-forecasts-ex-ante-vs-ex-post/&quot;&gt;Types of forecast: ex ante vs ex post&lt;/a&gt; was originally published by Andrey Kostenko at &lt;a href=&quot;&quot;&gt;Andrey Kostenko Analytics&lt;/a&gt; on September 06, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
   <title type="html"><![CDATA[Outliers and the correlation coefficient]]></title>
  <link rel="alternate" type="text/html" href="/outliers-and-the-correlation-coefficient/" />
   <id>/outliers-and-the-correlation-coefficient</id>
-  <published>2015-08-31T00:00:00+00:00</published>
-  <updated>2015-08-31T00:00:00+00:00</updated>
+  <published>2015-09-05T00:00:00+00:00</published>
+  <updated>2015-09-05T00:00:00+00:00</updated>
   <author>
     <name>Andrey Kostenko</name>
     <uri></uri>
@@ -138,7 +210,7 @@ Figure 1. The effect of outliers on the sample correlation
 &lt;/figcaption&gt;
 &lt;img src=&quot;/figures/Outliers_and_the_correlation_coefficient_plot1-1.svg&quot;&gt;
 &lt;/figure&gt;
-&lt;p&gt;This high sensitivity of the sample correlation coefficient to outliers is well-known and may complicates the analysis that otherwise can be easily automated. There are generally two approaches here: 1) remove the outliers and 2) use measures of correlation and association that are robust to outliers. Of course, a combination can always be used, but when considering automating the process the latter is usually preferred.&lt;/p&gt;
+&lt;p&gt;This high sensitivity of the sample correlation coefficient to outliers is well known and may complicate the analysis that otherwise could easily be automated. There are generally two strategies here: 1) remove the outliers prior to using the standard correlation coefficient, and 2) use measures of correlation and association that are robust to outliers. Of course, the two strategies can always be combined, but when you need to automate the analysis using the robust measures alone would often be a preferred approach.&lt;/p&gt;
 &lt;h1 id=&quot;robust-alternatives&quot;&gt;Robust alternatives&lt;/h1&gt;
 &lt;p&gt;It will be convenient to introduce the robust versions of the Pearson’s product-moment correlation coefficient by considering another dataset, the one that shows average brain and body weights for 28 species of land animals. R package MASS has a number of datasets useful for demonstrating various aspects of statistical methods. To see them all, just type &lt;em&gt;data(package=“MASS”)&lt;/em&gt;.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;
@@ -178,7 +250,7 @@ cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quo
 ##          cor 
 ## -0.005341163&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;showing practically zero correlation, thereby contradicting the relationship clearly present on the log-log plot. This situation can be reconciled by using correlation (measures of association) other than that of Pearson. The &lt;em&gt;cor.test()&lt;/em&gt; function can also compute Spearman’s rank correlation rho and Kendall rank correlation tau. All what is required is overwriting the default value of the &lt;em&gt;method&lt;/em&gt; parameter:&lt;/p&gt;
+&lt;p&gt;showing practically zero correlation, thereby contradicting the relationship clearly present on the log-log plot. This situation can be reconciled by using correlation (measures of association) other than that of Pearson. The &lt;em&gt;cor.test()&lt;/em&gt; function can also compute Spearman’s rank correlation rho and Kendall’s rank correlation tau. All what is required is overwriting the default value of the &lt;em&gt;method&lt;/em&gt; parameter:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;
 &lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;brain&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;data&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Animals&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; method &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;spearman&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;exact&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;FALSE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -208,15 +280,15 @@ cor.test&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quo
 ##       tau 
 ## 0.6172191&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;The two results are now more consistent with what the log-log plot suggests. The effect of &lt;em&gt;exact=FALSE&lt;/em&gt; could also be achieved by the use of &lt;em&gt;suppressWarnings()&lt;/em&gt; function to drop the warnings about the ties on observations that prevent calculation of exact p-values (so only approximations are returned), the issue that is of little interest to us now.&lt;/p&gt;
+&lt;p&gt;The two results are now consistent with what the log-log plot suggests. The effect of &lt;em&gt;exact=FALSE&lt;/em&gt; could also be achieved by the use of &lt;em&gt;suppressWarnings()&lt;/em&gt; function to drop the warnings about the ties on observations that prevent calculation of exact p-values (so only approximations are returned), the issue that is of little interest to us now.&lt;/p&gt;
 &lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
-&lt;p&gt;To conclude, outliers can distort the output of classical statistical methods to the extent that wrong conclusions can be made. There are generally two approaches to this problem: detect and then exclude the outliers from an analysis to be conducted with standard methods, or make use of the methods that are robust to outliers and other influential observations. A number of robust methods exist, for example, for regression modelling, of which the calculation of the sample correlation coefficients can be considered a special case. The second approach may often be preferred for automated solutions, as correctly detecting and removing outliers is in most cases difficult.&lt;/p&gt;
+&lt;p&gt;To conclude, outliers can distort the output of classical statistical methods to the extent that wrong conclusions can be made. There are generally two approaches to remedy this problem: detect and then exclude the outliers from an analysis to be conducted with standard methods, or make use of the methods that are robust to outliers and other influential observations. A number of robust methods exist, for example, for regression modelling, of which the calculation of the sample correlation coefficients can be considered a special case. The second approach may often be preferred for automated solutions, as correctly detecting and removing outliers is in most cases difficult.&lt;/p&gt;
 &lt;h1 id=&quot;references&quot; class=&quot;references unnumbered&quot;&gt;References&lt;/h1&gt;
 &lt;div id=&quot;ref-Rivkin86&quot;&gt;
 &lt;p&gt;Rivkin, D. J. (1986). Fifty-five mph speed limit is no safety guarantee. &lt;em&gt;New York Times (Letters to the Editor)&lt;/em&gt;, &lt;em&gt;25&lt;/em&gt;, p. 26.&lt;/p&gt;
 &lt;/div&gt;
 
-    &lt;p&gt;&lt;a href=&quot;/outliers-and-the-correlation-coefficient/&quot;&gt;Outliers and the correlation coefficient&lt;/a&gt; was originally published by Andrey Kostenko at &lt;a href=&quot;&quot;&gt;Andrey Kostenko Analytics&lt;/a&gt; on August 31, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;/outliers-and-the-correlation-coefficient/&quot;&gt;Outliers and the correlation coefficient&lt;/a&gt; was originally published by Andrey Kostenko at &lt;a href=&quot;&quot;&gt;Andrey Kostenko Analytics&lt;/a&gt; on September 05, 2015.&lt;/p&gt;
   </content>
 </entry>
 

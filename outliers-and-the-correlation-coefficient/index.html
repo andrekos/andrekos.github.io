@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <title>Outliers and the correlation coefficient &#8211; Andrey Kostenko Analytics</title>
 <meta name="description" content="Andrey's web place">
-<meta name="keywords" content="outliers, correlation, log-log plot, robust methods, R">
+<meta name="keywords" content="outliers, correlation, log-log plot, robust methods">
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
@@ -89,7 +89,7 @@
 	<ul class="dl-menu">
 		<li><a href="/"> <i class="fa fa-home"></i> &nbsp; Home</a></li>
 		<li>
-			<a href="#"> <i class="fa fa-circle-o"></i> &nbsp; About</a>
+			<a href="#"> <i class="fa fa-black-tie"></i> &nbsp; About</a>
 			<ul class="dl-submenu">
 				<li>
 				<div class="sidebar-logo">
@@ -165,6 +165,21 @@
 				<li><a href="/categories/"> <i class="fa fa-th"></i> &nbsp; All Categories</a></li>
 			</ul>
 		</li>
+        
+        	<li>
+			<a href="#"> <i class="fa fa-line-chart"></i> &nbsp; R </a>
+			<ul class="dl-submenu">
+				<li><a href="/WARG/"> <i class="fa fa-users"></i> &nbsp; WARG</a></li>
+			</ul>
+		</li>
+        
+             <li>
+			<a href="#"> <i class="fa fa-bar-chart"></i> &nbsp; SAS </a>
+			<ul class="dl-submenu">
+				<li><a href="#"> <i class="fa fa-question-circle"></i> &nbsp; Coming soon!</a></li>
+			</ul>
+		</li>
+        
 		
 	</ul><!-- /.dl-menu -->
 </nav><!-- /.dl-menuwrapper -->
@@ -198,7 +213,7 @@
         
           <h1 class="entry-title"><a href="/outliers-and-the-correlation-coefficient/" rel="bookmark" title="Outliers and the correlation coefficient">Outliers and the correlation coefficient</a></h1>
         
-        <h2><span class="entry-date date published"><time datetime="2015-08-31T00:00:00+00:00">August 31, 2015</time></span></h2>
+        <h2><span class="entry-date date published"><time datetime="2015-09-05T00:00:00+00:00">September 05, 2015</time></span></h2>
         
       </div><!-- /.header-title-wrap -->
     </header>
@@ -316,7 +331,7 @@ Figure 1. The effect of outliers on the sample correlation
 </figcaption>
 <img src="/figures/Outliers_and_the_correlation_coefficient_plot1-1.svg">
 </figure>
-<p>This high sensitivity of the sample correlation coefficient to outliers is well-known and may complicates the analysis that otherwise can be easily automated. There are generally two approaches here: 1) remove the outliers and 2) use measures of correlation and association that are robust to outliers. Of course, a combination can always be used, but when considering automating the process the latter is usually preferred.</p>
+<p>This high sensitivity of the sample correlation coefficient to outliers is well known and may complicate the analysis that otherwise could easily be automated. There are generally two strategies here: 1) remove the outliers prior to using the standard correlation coefficient, and 2) use measures of correlation and association that are robust to outliers. Of course, the two strategies can always be combined, but when you need to automate the analysis using the robust measures alone would often be a preferred approach.</p>
 <h1 id="robust-alternatives">Robust alternatives</h1>
 <p>It will be convenient to introduce the robust versions of the Pearson’s product-moment correlation coefficient by considering another dataset, the one that shows average brain and body weights for 28 species of land animals. R package MASS has a number of datasets useful for demonstrating various aspects of statistical methods. To see them all, just type <em>data(package=“MASS”)</em>.</p>
 <div class="highlight">
@@ -356,7 +371,7 @@ cor.test<span class="p">(</span><span class="o">~</span><span class="kp">body</s
 ##          cor 
 ## -0.005341163</code></pre>
 </div>
-<p>showing practically zero correlation, thereby contradicting the relationship clearly present on the log-log plot. This situation can be reconciled by using correlation (measures of association) other than that of Pearson. The <em>cor.test()</em> function can also compute Spearman’s rank correlation rho and Kendall rank correlation tau. All what is required is overwriting the default value of the <em>method</em> parameter:</p>
+<p>showing practically zero correlation, thereby contradicting the relationship clearly present on the log-log plot. This situation can be reconciled by using correlation (measures of association) other than that of Pearson. The <em>cor.test()</em> function can also compute Spearman’s rank correlation rho and Kendall’s rank correlation tau. All what is required is overwriting the default value of the <em>method</em> parameter:</p>
 <div class="highlight">
 <pre><code class="language-r" data-lang="r">cor.test<span class="p">(</span><span class="o">~</span><span class="kp">body</span><span class="o">+</span>brain<span class="p">,</span>data<span class="o">=</span>Animals<span class="p">,</span> method <span class="o">=</span><span class="s">&quot;spearman&quot;</span><span class="p">,</span>exact<span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span></code></pre>
 </div>
@@ -386,16 +401,16 @@ cor.test<span class="p">(</span><span class="o">~</span><span class="kp">body</s
 ##       tau 
 ## 0.6172191</code></pre>
 </div>
-<p>The two results are now more consistent with what the log-log plot suggests. The effect of <em>exact=FALSE</em> could also be achieved by the use of <em>suppressWarnings()</em> function to drop the warnings about the ties on observations that prevent calculation of exact p-values (so only approximations are returned), the issue that is of little interest to us now.</p>
+<p>The two results are now consistent with what the log-log plot suggests. The effect of <em>exact=FALSE</em> could also be achieved by the use of <em>suppressWarnings()</em> function to drop the warnings about the ties on observations that prevent calculation of exact p-values (so only approximations are returned), the issue that is of little interest to us now.</p>
 <h1 id="conclusion">Conclusion</h1>
-<p>To conclude, outliers can distort the output of classical statistical methods to the extent that wrong conclusions can be made. There are generally two approaches to this problem: detect and then exclude the outliers from an analysis to be conducted with standard methods, or make use of the methods that are robust to outliers and other influential observations. A number of robust methods exist, for example, for regression modelling, of which the calculation of the sample correlation coefficients can be considered a special case. The second approach may often be preferred for automated solutions, as correctly detecting and removing outliers is in most cases difficult.</p>
+<p>To conclude, outliers can distort the output of classical statistical methods to the extent that wrong conclusions can be made. There are generally two approaches to remedy this problem: detect and then exclude the outliers from an analysis to be conducted with standard methods, or make use of the methods that are robust to outliers and other influential observations. A number of robust methods exist, for example, for regression modelling, of which the calculation of the sample correlation coefficients can be considered a special case. The second approach may often be preferred for automated solutions, as correctly detecting and removing outliers is in most cases difficult.</p>
 <h1 id="references" class="references unnumbered">References</h1>
 <div id="ref-Rivkin86">
 <p>Rivkin, D. J. (1986). Fifty-five mph speed limit is no safety guarantee. <em>New York Times (Letters to the Editor)</em>, <em>25</em>, p. 26.</p>
 </div>
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="/tags/#outliers" title="posts tagged outliers" class="tag"><span class="term">outliers</span></a><a href="/tags/#correlation" title="posts tagged correlation" class="tag"><span class="term">correlation</span></a><a href="/tags/#log-log plot" title="posts tagged log-log plot" class="tag"><span class="term">log-log plot</span></a><a href="/tags/#robust methods" title="posts tagged robust methods" class="tag"><span class="term">robust methods</span></a><a href="/tags/#R" title="posts tagged R" class="tag"><span class="term">R</span></a></span>
+        <span class="entry-tags"><a href="/tags/#outliers" title="posts tagged outliers" class="tag"><span class="term">outliers</span></a><a href="/tags/#correlation" title="posts tagged correlation" class="tag"><span class="term">correlation</span></a><a href="/tags/#log-log plot" title="posts tagged log-log plot" class="tag"><span class="term">log-log plot</span></a><a href="/tags/#robust methods" title="posts tagged robust methods" class="tag"><span class="term">robust methods</span></a></span>
         
         <div class="social-share">
   <ul class="socialcount socialcount-small inline-list">
@@ -411,14 +426,19 @@ cor.test<span class="p">(</span><span class="o">~</span><span class="kp">body</s
  
     <div class="read-more-header">
         <div style='float: left;'><a href="/Useful-SAS-books-shortlisted/" title="previous post" class="read-more-btn"> <i class="fa fa-long-arrow-left fa-2x"></i> </a></div>
-        <div style='float: right;'><a href="" title="next post" class="read-more-btn"> <i class="fa fa-long-arrow-right fa-2x"></i> </a> </div>
+        <div style='float: right;'><a href="/types-of-forecasts-ex-ante-vs-ex-post/" title="next post" class="read-more-btn"> <i class="fa fa-long-arrow-right fa-2x"></i> </a> </div>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/Useful-SAS-books-shortlisted/" title="Useful SAS books short-listed">Useful SAS books short-listed</a></h3>
-      <p>A pick of twelve SAS books for a team of forecasters. <a href="/Useful-SAS-books-shortlisted/">Continue reading</a></p>
+      <h3><a href="/types-of-forecasts-ex-ante-vs-ex-post/" title="Types of forecast: ex ante vs ex post">Types of forecast: ex ante vs ex post</a></h3>
+      <p>Ex ante forecast is a forecast based solely on information available at the time of the forecast, whereas ex post forecast is a forecast ...&hellip; <a href="/types-of-forecasts-ex-ante-vs-ex-post/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="/Useful-SAS-books-shortlisted/" title="Useful SAS books short-listed">Useful SAS books short-listed</a></h4>
+        <span>Published on January 05, 2015</span>
+      </div><!-- /.list-item -->
     
       <div class="list-item">
         <h4><a href="/Motivational-quotes-from-my-thesis/" title="Motivational quotes from my PhD thesis">Motivational quotes from my PhD thesis</a></h4>
@@ -441,6 +461,7 @@ based on <a href="http://mademistakes.com/hpstr/" rel="notfollow" target="blank"
 hosted at <a href="http://github.com" rel="nofollow" target="blank">GitHub</a>.</span>
 
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--
  <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   jax: ["input/TeX", "output/HTML-CSS"],
@@ -454,7 +475,7 @@ MathJax.Hub.Config({
   "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
 });
 </script>
-
+-->
  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <!--
  <script type="text/javascript" src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-collapse.js"></script>  
