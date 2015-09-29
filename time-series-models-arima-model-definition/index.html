@@ -228,11 +228,11 @@
 </ol>
 <p>Moving Average (MA) model of order <span class="math inline">\(q\)</span>:</p>
 <ol start="2" type="1">
-<li><span class="math display">\[x_t=\theta_1 \omega_{t-1}+ \dots + \theta_q x_{t-q}+\omega_t\]</span></li>
+<li><span class="math display">\[x_t=\theta_1 \omega_{t-1}+ \dots + \theta_q \omega_{t-q}+\omega_t\]</span></li>
 </ol>
 <p>AutoRegressive Moving Average (ARMA) model of order <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>:</p>
 <ol start="3" type="1">
-<li><span class="math display">\[x_t=\phi_1 x_{t-1}+ \dots + \phi_p x_{t-p}+\omega_t + \theta_1 \omega_{t-1}+ \dots + \theta_q x_{t-q}+\omega_t\]</span></li>
+<li><span class="math display">\[x_t=\phi_1 x_{t-1}+ \dots + \phi_p x_{t-p} + \theta_1 \omega_{t-1}+ \dots + \theta_q \omega_{t-q}+\omega_t\]</span></li>
 </ol>
 <p>where <span class="math inline">\(w_t\)</span> is a Gaussian white noise with zero mean, constant variance <span class="math inline">\(\sigma^2_\omega\)</span> and zero covariances. In the AR model, the current value of the process, <span class="math inline">\(x_t\)</span>, is expressed as a finite linear aggregate of previous values of the process and white noise <span class="math inline">\(\omega_t\)</span>. In the MA model, the current value of the process, <span class="math inline">\(x_t\)</span>, is a finite linear aggregate of previous values of the white noise, <span class="math inline">\(\omega_{t-1}\)</span>, <span class="math inline">\(\omega_{t-2}\)</span>, <span class="math inline">\(\omega_{t-q}\)</span>, plus the current value of the noise <span class="math inline">\(\omega_t\)</span>. In the ARMA model, <span class="math inline">\(x_t\)</span> is expressed as a sum of finite linear aggregate of previous values of the process, and the past and current white noise inputs. The ARMA process is the most flexible of the three, meaning that it will require fewer parameters to be estimated when the model is used to forecast time series data.</p>
 <p>As detailed in <span class="citation" data-cites="Holden95">Holden (1995)</span>, that any stationary process can be uniquely represented by a possibly infinite MA process is due to <span class="citation" data-cites="bWold1938">Wold (1938 Theorem 7)</span>. That is, ignoring any deterministic component that can be removed by subtraction, (1) can be written as</p>
