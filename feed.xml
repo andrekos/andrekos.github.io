@@ -4,13 +4,107 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-09-20T14:18:16+00:00</updated>
+<updated>2015-09-29T20:10:26+00:00</updated>
 <id>/</id>
 <author>
   <name>Andrey Kostenko</name>
   <uri>/</uri>
   <email>akoste01@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Time series models: VAR model definition]]></title>
+ <link rel="alternate" type="text/html" href="/time-series-models-var-model-definition/" />
+  <id>/time-series-models-var-model-definition</id>
+  <published>2015-09-30T00:00:00+00:00</published>
+  <updated>2015-09-30T00:00:00+00:00</updated>
+  <author>
+    <name>Andrey Kostenko</name>
+    <uri></uri>
+    <email>akoste01@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;The Vector AutoRegression (VAR) family of models has been widely used for modelling and forecasting since the early 1980s. A VAR model is a conceptually simple system of multivariate models where each variable is explained by its own past values and the past values of all other variables in the system.&lt;/p&gt;
+&lt;h1 id=&quot;var-model-definition&quot;&gt;VAR model definition&lt;/h1&gt;
+&lt;p&gt;The Vector AutoRegression (VAR) family of models has been widely used for modelling and forecasting since the work of &lt;span class=&quot;citation&quot; data-cites=&quot;Sims80&quot;&gt;Sims (1980)&lt;/span&gt;&lt;a href=&quot;#fn1&quot; class=&quot;footnoteRef&quot; id=&quot;fnref1&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;. A VAR model is a system of multivariate models in which each variable is explained by its own past values and the past values of all other variables in the system. For example, with two variables &lt;span class=&quot;math inline&quot;&gt;\(x\)&lt;/span&gt; and &lt;span class=&quot;math inline&quot;&gt;\(y\)&lt;/span&gt;, and two lagged values of each variables, the system is given by&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[x_t=\alpha_0+\alpha_1 x_{t-1}+\alpha_2 x_{t-2} + \alpha_3y_{t-1} + \alpha_4y_{t-2} + \epsilon_{1t}\]&lt;/span&gt; &lt;span class=&quot;math display&quot;&gt;\[y_t=\beta_0+\beta_1 x_{t-1}+\beta_2 x_{t-2} + \beta_3y_{t-1} + \beta_4y_{t-2} + \epsilon_{2t}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&quot;math inline&quot;&gt;\(\epsilon_1\)&lt;/span&gt; and &lt;span class=&quot;math inline&quot;&gt;\(\epsilon_2\)&lt;/span&gt; are generally correlated random errors. There are ten unknown parameters in the above system. More generally, the system of &lt;span class=&quot;math inline&quot;&gt;\(k\)&lt;/span&gt; variables with &lt;span class=&quot;math inline&quot;&gt;\(l\)&lt;/span&gt; legs on each variable plus a constant in each equation will have &lt;span class=&quot;math inline&quot;&gt;\((k^2l)+k\)&lt;/span&gt; parameters to estimate. As the right-hand side variables are the same in each equation, the ordinary least squares (OLS) can be used to estimate the system. Using matrix notation, the general VAR model can be written&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[\mathbf{Y}_t=\mathbf{A}\mathbf{Y}_{t-1}+ \boldsymbol{\epsilon}_t\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&quot;math inline&quot;&gt;\(\mathbf{A}\)&lt;/span&gt; is a matrix of polynomials in the lag operator, &lt;span class=&quot;math inline&quot;&gt;\(\mathbf{Y}\)&lt;/span&gt; is the vector of variables, and &lt;span class=&quot;math inline&quot;&gt;\(\boldsymbol{\epsilon}\)&lt;/span&gt; is a vector of random errors. Further details including the statistical and econometric research preceding the development of VAR models, problems of parameter estimation, cointegration and forecasting are available from &lt;span class=&quot;citation&quot; data-cites=&quot;Holden95&quot;&gt;Holden (1995)&lt;/span&gt;.&lt;/p&gt;
+&lt;h1 id=&quot;references&quot; class=&quot;references unnumbered&quot;&gt;References&lt;/h1&gt;
+&lt;div id=&quot;ref-Holden95&quot;&gt;
+&lt;p&gt;Holden, K. (1995). Vector autoregression modeling and forecasting. &lt;em&gt;Journal of Forecasting&lt;/em&gt;, &lt;em&gt;14&lt;/em&gt;(3), 159–166. &lt;a href=&quot;http://doi.org/10.1002/for.3980140302&quot; class=&quot;uri&quot;&gt;http://doi.org/10.1002/for.3980140302&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;ref-Sims80&quot;&gt;
+&lt;p&gt;Sims, C. (1980). Macroeconomics and reality. &lt;em&gt;Econometrica&lt;/em&gt;, &lt;em&gt;48&lt;/em&gt;(1), 1–48. &lt;a href=&quot;http://doi.org/10.2307/1912017&quot; class=&quot;uri&quot;&gt;http://doi.org/10.2307/1912017&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;section class=&quot;footnotes&quot;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn1&quot;&gt;&lt;p&gt;In October 2011, Christopher Sims of Princeton University shared the Nobel Prize for economics with Thomas Sargent of New York University “for their empirical research on cause and effect in the macroeconomy”. &lt;a href=&quot;http://www.voxeu.org/article/why-christopher-sims-won-nobel-prize&quot; target=&quot;_blank&quot;&gt;Read more…&lt;/a&gt;&lt;a href=&quot;#fnref1&quot;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/time-series-models-var-model-definition/&quot;&gt;Time series models: VAR model definition&lt;/a&gt; was originally published by Andrey Kostenko at &lt;a href=&quot;&quot;&gt;Andrey Kostenko Analytics&lt;/a&gt; on September 30, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Time series models: ARIMA model definition]]></title>
+ <link rel="alternate" type="text/html" href="/time-series-models-arima-model-definition/" />
+  <id>/time-series-models-arima-model-definition</id>
+  <published>2015-09-30T00:00:00+00:00</published>
+  <updated>2015-09-30T00:00:00+00:00</updated>
+  <author>
+    <name>Andrey Kostenko</name>
+    <uri></uri>
+    <email>akoste01@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;The Autoregressive Integrated Moving Average (ARIMA) family of models has now been a workhorse of time series forecasting for almost 50 years. The acronym indicates that the model is composed of different terms, an autoregressive term (AR), a moving-average term (MA), and an integration term (I) that accounts for the non-stationarity of the time series. The three terms combined constitute one of the most widely used discrete-time dynamic model.&lt;/p&gt;
+&lt;h1 id=&quot;arima-model-definition&quot;&gt;ARIMA model definition&lt;/h1&gt;
+&lt;p&gt;Consider the three linear dynamical system models:&lt;/p&gt;
+&lt;p&gt;AutoRegressive (AR) model of order &lt;span class=&quot;math inline&quot;&gt;\(p\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;span class=&quot;math display&quot;&gt;\[x_t=\phi_1 x_{t-1}+ \dots + \phi_p x_{t-p}+\omega_t\]&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Moving Average (MA) model of order &lt;span class=&quot;math inline&quot;&gt;\(q\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ol start=&quot;2&quot; type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;span class=&quot;math display&quot;&gt;\[x_t=\theta_1 \omega_{t-1}+ \dots + \theta_q x_{t-q}+\omega_t\]&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;AutoRegressive Moving Average (ARMA) model of order &lt;span class=&quot;math inline&quot;&gt;\(p\)&lt;/span&gt; and &lt;span class=&quot;math inline&quot;&gt;\(q\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ol start=&quot;3&quot; type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;span class=&quot;math display&quot;&gt;\[x_t=\phi_1 x_{t-1}+ \dots + \phi_p x_{t-p}+\omega_t + \theta_1 \omega_{t-1}+ \dots + \theta_q x_{t-q}+\omega_t\]&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;where &lt;span class=&quot;math inline&quot;&gt;\(w_t\)&lt;/span&gt; is a Gaussian white noise with zero mean, constant variance &lt;span class=&quot;math inline&quot;&gt;\(\sigma^2_\omega\)&lt;/span&gt; and zero covariances. In the AR model, the current value of the process, &lt;span class=&quot;math inline&quot;&gt;\(x_t\)&lt;/span&gt;, is expressed as a finite linear aggregate of previous values of the process and white noise &lt;span class=&quot;math inline&quot;&gt;\(\omega_t\)&lt;/span&gt;. In the MA model, the current value of the process, &lt;span class=&quot;math inline&quot;&gt;\(x_t\)&lt;/span&gt;, is a finite linear aggregate of previous values of the white noise, &lt;span class=&quot;math inline&quot;&gt;\(\omega_{t-1}\)&lt;/span&gt;, &lt;span class=&quot;math inline&quot;&gt;\(\omega_{t-2}\)&lt;/span&gt;, &lt;span class=&quot;math inline&quot;&gt;\(\omega_{t-q}\)&lt;/span&gt;, plus the current value of the noise &lt;span class=&quot;math inline&quot;&gt;\(\omega_t\)&lt;/span&gt;. In the ARMA model, &lt;span class=&quot;math inline&quot;&gt;\(x_t\)&lt;/span&gt; is expressed as a sum of finite linear aggregate of previous values of the process, and the past and current white noise inputs. The ARMA process is the most flexible of the three, meaning that it will require fewer parameters to be estimated when the model is used to forecast time series data.&lt;/p&gt;
+&lt;p&gt;As detailed in &lt;span class=&quot;citation&quot; data-cites=&quot;Holden95&quot;&gt;Holden (1995)&lt;/span&gt;, that any stationary process can be uniquely represented by a possibly infinite MA process is due to &lt;span class=&quot;citation&quot; data-cites=&quot;bWold1938&quot;&gt;Wold (1938 Theorem 7)&lt;/span&gt;. That is, ignoring any deterministic component that can be removed by subtraction, (1) can be written as&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[x_t=(1+\theta_1L+\theta_2L^2 + \dots)\epsilon_t=\theta(L)\epsilon_t,\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&quot;math inline&quot;&gt;\(L\)&lt;/span&gt; is the lag operator, often called the backshift operator &lt;span class=&quot;math inline&quot;&gt;\(B\)&lt;/span&gt;, such that &lt;span class=&quot;math inline&quot;&gt;\((1-L^k)x_t\equiv x_t-x_{t-k}\)&lt;/span&gt;. That any stationary process can be uniquely represented by a possibly infinite AR process is due to &lt;span class=&quot;citation&quot; data-cites=&quot;bWhittle1963&quot;&gt;Whittle (1963, p. 21)&lt;/span&gt;. Again, ignoring any deterministic component, (2) can be written as&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[\epsilon=(1-\phi_1L-\phi_2L^2 - \phi_3L^3 \dots)x_t=\phi(L)x_t.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Equation (3), which can be written as&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[\phi(L)x_t=\theta(L)\epsilon_t \to \frac{\phi(L)}{\theta(L)}x_t=\epsilon,\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;provides the groundwork for the ARMA models of &lt;span class=&quot;citation&quot; data-cites=&quot;bBJ1976&quot;&gt;Box &amp;amp; Jenkins (1976)&lt;/span&gt; (first published in the 1970, after a series of working papers).&lt;/p&gt;
+&lt;p&gt;For time series that are not stationary &lt;span class=&quot;citation&quot; data-cites=&quot;bBJ1976&quot;&gt;Box &amp;amp; Jenkins (1976)&lt;/span&gt; popularised the idea that differencing a non-stationary process &lt;span class=&quot;math inline&quot;&gt;\(d\)&lt;/span&gt; times can reduce it to a (nearly) stationary process so that the ARMA modelling framework above applies. That is, if &lt;span class=&quot;math inline&quot;&gt;\(y_t\)&lt;/span&gt; is non-stationary, stationarity can often be achieved by taking differences &lt;span class=&quot;math inline&quot;&gt;\(x_t=(1-L)^dy_t\)&lt;/span&gt;. Note that in practice &lt;span class=&quot;math inline&quot;&gt;\(d\)&lt;/span&gt; is rarely greater than 2.&lt;/p&gt;
+&lt;p&gt;The general (non-seasonal) ARIMA process is commonly referred to as ARIMA(&lt;span class=&quot;math inline&quot;&gt;\(p,d,q\)&lt;/span&gt;), where &lt;span class=&quot;math inline&quot;&gt;\(d\)&lt;/span&gt; is the order of integration of the process, &lt;span class=&quot;math inline&quot;&gt;\(p\)&lt;/span&gt; is the number of autoregressive parameters and &lt;span class=&quot;math inline&quot;&gt;\(q\)&lt;/span&gt; is the number of moving average parameters. Special cases follow naturally: ARIMA(&lt;span class=&quot;math inline&quot;&gt;\(p,0,q\)&lt;/span&gt;) &lt;span class=&quot;math inline&quot;&gt;\(\equiv\)&lt;/span&gt; ARMA(&lt;span class=&quot;math inline&quot;&gt;\(p,q\)&lt;/span&gt;), ARIMA(&lt;span class=&quot;math inline&quot;&gt;\(p,0,0\)&lt;/span&gt;) &lt;span class=&quot;math inline&quot;&gt;\(\equiv\)&lt;/span&gt; AR(&lt;span class=&quot;math inline&quot;&gt;\(p\)&lt;/span&gt;), ARIMA(&lt;span class=&quot;math inline&quot;&gt;\(0,0,q\)&lt;/span&gt;) &lt;span class=&quot;math inline&quot;&gt;\(\equiv\)&lt;/span&gt; MA(&lt;span class=&quot;math inline&quot;&gt;\(q\)&lt;/span&gt;), ARIMA(&lt;span class=&quot;math inline&quot;&gt;\(0,1,0\)&lt;/span&gt;) is a random walk process and ARIMA(&lt;span class=&quot;math inline&quot;&gt;\(0,0,0\)&lt;/span&gt;) is a white noise. Further details are available in almost any book on time series forecasting and zillions of papers.&lt;/p&gt;
+&lt;h1 id=&quot;references&quot; class=&quot;references unnumbered&quot;&gt;References&lt;/h1&gt;
+&lt;div id=&quot;ref-bBJ1976&quot;&gt;
+&lt;p&gt;Box, G. E. P., &amp;amp; Jenkins, G. M. (1976). &lt;em&gt;Time series analysis, forecasting and control&lt;/em&gt;. San Francisco: Holden-Day.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;ref-Holden95&quot;&gt;
+&lt;p&gt;Holden, K. (1995). Vector autoregression modeling and forecasting. &lt;em&gt;Journal of Forecasting&lt;/em&gt;, &lt;em&gt;14&lt;/em&gt;(3), 159–166. &lt;a href=&quot;http://doi.org/10.1002/for.3980140302&quot; class=&quot;uri&quot;&gt;http://doi.org/10.1002/for.3980140302&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;ref-bWhittle1963&quot;&gt;
+&lt;p&gt;Whittle, P. (1963). &lt;em&gt;Prediction and regulation&lt;/em&gt;. London: English University Press.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;ref-bWold1938&quot;&gt;
+&lt;p&gt;Wold, H. (1938). &lt;em&gt;A study in the analysis of stationary time series&lt;/em&gt;. Upsala: Almquist; Wiksell.&lt;/p&gt;
+&lt;/div&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/time-series-models-arima-model-definition/&quot;&gt;Time series models: ARIMA model definition&lt;/a&gt; was originally published by Andrey Kostenko at &lt;a href=&quot;&quot;&gt;Andrey Kostenko Analytics&lt;/a&gt; on September 30, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
