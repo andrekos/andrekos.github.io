@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dr Andrey Kostenko on Dr Andrey Kostenko</title>
+    <link>//localhost:1313/</link>
+    <description>Recent content in Dr Andrey Kostenko on Dr Andrey Kostenko</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 Feb 2019 00:00:00 +0800</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>External Project 1</title>
+      <link>//localhost:1313/project/external-project/</link>
+      <pubDate>Wed, 06 Feb 2019 00:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/project/external-project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Internal Project 1</title>
+      <link>//localhost:1313/project/internal-project/</link>
+      <pubDate>Wed, 06 Feb 2019 00:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/project/internal-project/</guid>
+      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Coming soon</title>
+      <link>//localhost:1313/tutorial/temp/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/tutorial/temp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Example Talk</title>
+      <link>//localhost:1313/talk/example/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/talk/example/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Slides can be added in a few ways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Create&lt;/strong&gt; slides using Academic&amp;rsquo;s &lt;em&gt;Slides&lt;/em&gt; feature and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; an existing slide deck to &lt;code&gt;static/&lt;/code&gt; and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Further talk details can easily be added to this page using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Time series forecasting: ex ante vs ex post</title>
+      <link>//localhost:1313/post/ex-ante-vs-ex-post/</link>
+      <pubDate>Sun, 06 Sep 2015 00:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/post/ex-ante-vs-ex-post/</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;Ex ante&lt;/em&gt; forecast is a forecast based solely on information available at the time of the forecast, whereas &lt;em&gt;ex post&lt;/em&gt; forecast is a forecast that uses information beyond the time at which the forecast is made.
+Let’s discuss the two in more detail, as in different contexts the terms may mean slightly different things.&lt;/p&gt;
+
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Only one thing is true about forecasts - they are always wrong. Any forecast $\widehat{Y_t}$ of the actual value $Y_t$ is associated with the forecast error
+$e_t=Y_t−\widehat{Y_t}$. The art and science of forecasting is all about bringing these forecast errors down to zero, as close as possible,
+for all future values of $t$. Doing this first for some of the past values of $t$ is often a useful exercise for developing a better forecasting model. It
+is this distinction between future and past values of $t$ that underlines the distinction between two types of forecast: &lt;em&gt;ex post&lt;/em&gt; forecasts and
+&lt;em&gt;ex ante&lt;/em&gt; forecasts.&lt;/p&gt;
+
+&lt;p&gt;The terms &lt;em&gt;ex ante&lt;/em&gt; and &lt;em&gt;ex post&lt;/em&gt; are among those few words in the forecasting literature that a general reader is unlikely to understand without first
+learning what they in fact mean. To see how the term ex ante have been used in the forecasting literature, check out the following excerpts:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Empirical results show that this procedure selects models that give reasonable &lt;strong&gt;ex ante&lt;/strong&gt; forecast accuracy.&lt;/li&gt;
+&lt;li&gt;The models allowing for serial correlation are shown to have the best &lt;strong&gt;ex ante&lt;/strong&gt; forecasting performance.&lt;/li&gt;
+&lt;li&gt;I looked primarily for studies that used real data to compare the &lt;strong&gt;ex ante&lt;/strong&gt; forecasting accuracy of alternative methods.&lt;/li&gt;
+&lt;li&gt;They examined the potential benefits of &lt;strong&gt;ex ante&lt;/strong&gt; rules when contrasted with model selection based on within-sample model fitting.&lt;/li&gt;
+&lt;li&gt;It is not clear to me from reading the paper if the resulting forecasts are true &lt;strong&gt;ex ante&lt;/strong&gt; forecasts.&lt;/li&gt;
+&lt;li&gt;The forecasts were tested on a holdout &lt;strong&gt;ex ante&lt;/strong&gt; sample that was known only to the administrator of the competition.&lt;/li&gt;
+&lt;li&gt;It may be, for example, that forecasters are using future information, perhaps inadvertently, so that forecasts are not &lt;strong&gt;ex ante&lt;/strong&gt;, and I have known several cases where further study showed that a method was not as good as first suggested.&lt;/li&gt;
+&lt;li&gt;The NN3 competition evaluates the &lt;strong&gt;ex ante&lt;/strong&gt; accuracy of forecasting the next 18 observations on two homogeneous sets of 111 or 11 time series of varying length and time series patterns on multiple established error metrics.&lt;/li&gt;
+&lt;li&gt;No matter how honest our efforts, and no matter how generous our colleagues, as long as comparisons were not genuinely &lt;strong&gt;ex ante&lt;/strong&gt; a measure of doubt about our results was inevitable.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In general, &lt;strong&gt;ex ante&lt;/strong&gt; is often used to mean ‘before-the-fact’ and ex post as ‘after-the-fact’. In the forecasting literature, an ex ante forecast is said
+to be any forecast that uses information available only at the time of the forecast. When a forecast prepared at certain time uses information available
+after that time, it is said to be an ex post forecast. A typical example of the latter is when known (actual rather than projected) values of external
+variables (regressors, predictors or drivers) are used in producing forecasts for the hold-out part of a time series. While ex post forecasts may be
+useful for exploring the properties of the forecasting model, it is ex ante forecasts (and the associated accuracy) that are ultimately important.&lt;/p&gt;
+
+&lt;h2 id=&#34;forecasting-univariate-time-series&#34;&gt;Forecasting univariate time series&lt;/h2&gt;
+
+&lt;p&gt;In the context of univariate time series forecasting, the difference between ex ante and ex post forecasts is well explained by Chan (2010). The
+remainder of this paragraph, including the quote below, follows him almost verbatim.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The ex post forecasts are made when the “future” observations are known during the forecasting period. It is used as a means to check against
+known data so that the forecasting model can be evaluated. The ex ante forecasts are made beyond the present, when the future observations are
+not available for checking.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Suppose that we observe $\{Y_1,\dots,Y_n\}$, so we may use $\{Y_1,\dots,Y_t\}$ for $t&amp;lt;n$ to estimate a model and use the estimated model to
+forecast $\{Y_{t+1},\dots,Y_n\}$. These are ex post forecasts since we can use them to compare against the observed
+$\{Y_{t+1},\dots,Y_n\}$.&lt;/p&gt;
+
+&lt;p&gt;The estimation period in this case is $t$. On the other hand, when we forecast $\{Y_{n+1},\dots,Y_{n+h}\}$ for $h&amp;gt;0$, we are doing ex ante forecasts.
+After fitting a model, we estimate a future value $Y_{n+h}$ at time $n$ by $\widehat{Y_n}(h)$ based on the fitted model, while the actual value
+of $Y_{n+h}$ is unknown.&lt;/p&gt;
+
+&lt;p&gt;Somewhat differently from the above, in the context of univariate time series ex post forecast is sometimes used synonymously with the
+‘model fit’ (i.e. small ex post forecast errors are associated with models that fit the data well). For example, according to
+Gardner &amp;amp; McKenzie (1988), in the 1960s and 1970s, the period of early theoretical development in quantitative forecasting, it was
+expected that&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The better the fit (ex post) of the forecasting model, the better the accuracy (ex ante) should be.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Note that it is well known nowadays that the above statement is in general false. Ledolter (2010) also uses the term ex post when
+referring to the in-sample forecast performance:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;If sufficient observations are available, one should divide the series into two parts,
+derive estimates of the parameters that are necessary to construct the forecasts from the first part, and evaluate the accuracy of the
+ex ante forecasts from the observations in the holdout period. This is important, since models that fit the data well (i.e., have small
+ex post forecast errors) sometimes perform badly in forecasting, and vice versa.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;forecasting-with-external-variables&#34;&gt;Forecasting with external variables&lt;/h2&gt;
+
+&lt;p&gt;In the context of time series with external variables ex post forecasts most commonly are forecast made with knowledge of
+the external variables. This type of forecast can be useful in quantifying the sources of forecast uncertainty, when answering questions
+like what part of a forecast error is due to a poor forecast of temperature and what part of it should be attributed to the
+forecasting model itself being imperfect. Quantifying the effect of errors due to the need to use estimated future values of
+external variables rather than their actual or observed values can often help improve the forecasting model.
+For example, Hyndman &amp;amp; Fan (2010) write:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Specifically, ex ante forecasts are the forecasts made in advance using whatever information is available at the time. On the other hand,
+ex post forecasts are those that are made using information on the “driver variables” that is only known after the event being forecast. The
+difference between the ex ante forecasts and ex post forecasts will provide a measure of the effectiveness of the model for forecasting
+(taking out the effect of the forecast errors in the input variables).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It is in this latter context that the distinction between the ex post and ex ante forecast is most useful.
+The reader of forecasting literature, however, should be aware that some well established names in the forecasting
+literature may use the terms simply to distinguish between the in-sample forecasts (done as part of the model fitting process) and the
+out-of-sample forecasts (done as part of the forecast evaluation process).&lt;/p&gt;
+
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+
+&lt;p&gt;Chan, N. H. (2010). Time series applications to finance with R and S-Plus (2nd ed.). John Wiley &amp;amp; Sons. &lt;a href=&#34;http://www.sta.cuhk.edu.hk/nhchan&#34; target=&#34;_blank&#34;&gt;http://www.sta.cuhk.edu.hk/nhchan&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Gardner, E. S., &amp;amp; McKenzie, E. (1988). Model identification in exponential smoothing. Journal of the Operational Research Society, 39(9), 863–867. &lt;a href=&#34;http://doi.org/10.2307/2583529&#34; target=&#34;_blank&#34;&gt;http://doi.org/10.2307/2583529&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Hyndman, R. J., &amp;amp; Fan, S. (2010). Density forecasting for long-term peak electricity demand. IEEE Transactions On Power Systems, 25(2), 1142–1153. &lt;a href=&#34;http://doi.org/10.1109/TPWRS.2009.2036017&#34; target=&#34;_blank&#34;&gt;http://doi.org/10.1109/TPWRS.2009.2036017&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Ledolter, J. (2010). Prediction and forecasting. Encyclopedia of Statistical Sciences. &lt;a href=&#34;http://doi.org/10.1002/0471667196.ess2046.pub3&#34; target=&#34;_blank&#34;&gt;http://doi.org/10.1002/0471667196.ess2046.pub3&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Person Re-Identification System For Mobile Devices</title>
+      <link>//localhost:1313/publication/person-re-id/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/publication/person-re-id/</guid>
+      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Four motivational quotes</title>
+      <link>//localhost:1313/post/phd_motivational_quotes/</link>
+      <pubDate>Fri, 02 Jan 2015 00:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/post/phd_motivational_quotes/</guid>
+      <description>&lt;p&gt;This quick post is largely for testing purposes. It aims at sharing four motivational quotes that I carefully selected for
+the introductory page of the front matter of my PhD thesis. It was entitled &lt;em&gt;Statistical issues in modelling and forecasting
+sequential count data&lt;/em&gt; and examined by professors James Taylor of Oxford University and Williams Dunsmuir of the University
+of New South Wales at the end of 2012. I will revisit some of the more interesting points developed there in this blog but for now, here are
+the promised quotes in the original order.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;It is not knowledge, but the act of learning, not possession but the act of
+getting there, which grants the greatest enjoyment. When I have clarified
+and exhausted a subject, then I turn away from it, in order to go into
+darkness again; the never-satisfied man is so strange if he has completed
+a structure, then it is not in order to dwell in it peacefully, but in order to
+begin another. I imagine the world conqueror must feel thus, who, after
+one kingdom is scarcely conquered, stretches out his arms for others.
+&lt;br&gt; &amp;ndash; &lt;a href=&#34;http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss&#34; target=&#34;_blank&#34;&gt;Carl Friedrich Gauss&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Every day you may make progress. Every step may be fruitful. Yet there
+will stretch out before you an ever-lengthening, ever-ascending, ever-improving path.
+You know you will never get to the end of the journey. But this, so far from
+discouraging, only adds to the joy and glory of the climb.
+&lt;br&gt; &amp;ndash; &lt;a href=&#34;http://en.wikipedia.org/wiki/Winston_Churchill&#34; target=&#34;_blank&#34;&gt;Winston Churchill&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Finish each day and be done with it. You have done what you could.
+Some blunders and absurdities no doubt crept in, forget them as soon as
+you can. Tomorrow is a new day, you shall begin it well and serenely&amp;hellip;
+&lt;br&gt; &amp;ndash; &lt;a href=&#34;http://en.wikipedia.org/wiki/Ralph_Waldo_Emerson&#34; target=&#34;_blank&#34;&gt;Ralph Waldo Emerson&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You can’t be perfect, but if you don’t try, you won’t be good enough.
+&lt;br&gt; &amp;ndash; &lt;a href=&#34;http://en.wikipedia.org/wiki/Paul_Halmos&#34; target=&#34;_blank&#34;&gt;Paul Halmos&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;We all procrastinate from time to time, and my favourite way to do that while working on my thesis was to read much of what Paul Halmos wrote.
+The quickest way to learn what he wrote about, and how, is probably by reading &lt;a href=&#34;http://www.ams.org/notices/200709/tx070901136p.pdf&#34; target=&#34;_blank&#34;&gt;this article&lt;/a&gt;
+by John Ewing.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mobile visual clothing search</title>
+      <link>//localhost:1313/publication/clothing-search/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/publication/clothing-search/</guid>
+      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Slides</title>
+      <link>//localhost:1313/slides/example-slides/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/slides/example-slides/</guid>
+      <description>
+
+&lt;h1 id=&#34;welcome-to-slides&#34;&gt;Welcome to Slides&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34;&gt;Academic&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Efficiently write slides in Markdown&lt;/li&gt;
+&lt;li&gt;3-in-1: Create, Present, and Publish your slides&lt;/li&gt;
+&lt;li&gt;Supports speaker notes&lt;/li&gt;
+&lt;li&gt;Mobile friendly slides&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;controls&#34;&gt;Controls&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Next: &lt;code&gt;Right Arrow&lt;/code&gt; or &lt;code&gt;Space&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Previous: &lt;code&gt;Left Arrow&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Start: &lt;code&gt;Home&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Finish: &lt;code&gt;End&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Overview: &lt;code&gt;Esc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Speaker notes: &lt;code&gt;S&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Fullscreen: &lt;code&gt;F&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Zoom: &lt;code&gt;Alt + Click&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/hakimel/reveal.js#pdf-export&#34; target=&#34;_blank&#34;&gt;PDF Export&lt;/a&gt;: &lt;code&gt;E&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;code-highlighting&#34;&gt;Code Highlighting&lt;/h2&gt;
+
+&lt;p&gt;Inline code: &lt;code&gt;variable&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Code block:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;porridge = &amp;quot;blueberry&amp;quot;
+if porridge == &amp;quot;blueberry&amp;quot;:
+    print(&amp;quot;Eating...&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;math&#34;&gt;Math&lt;/h2&gt;
+
+&lt;p&gt;In-line math: $x + y = z$&lt;/p&gt;
+
+&lt;p&gt;Block math:&lt;/p&gt;
+
+&lt;p&gt;$$
+f\left( x \right) = \;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
+$$&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
+
+&lt;p&gt;Make content appear incrementally&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
+{{% fragment %}} **Two** {{% /fragment %}}
+{{% fragment %}} Three {{% /fragment %}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+  One
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+  &lt;strong&gt;Two&lt;/strong&gt;
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+  Three
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
+
+&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
+- Only the speaker can read these notes
+- Press `S` key to view
+{{% /speaker_note %}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
+
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/aside&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;
+&lt;li&gt;white: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;league: Gray background, white text, blue links&lt;/li&gt;
+&lt;li&gt;beige: Beige background, dark text, brown links&lt;/li&gt;
+&lt;li&gt;sky: Blue background, thin dark text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;night: Black background, thick white text, orange links&lt;/li&gt;
+&lt;li&gt;serif: Cappuccino background, gray text, brown links&lt;/li&gt;
+&lt;li&gt;simple: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;solarized: Cream-colored background, dark green text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+
+&lt;section data-noprocess data-shortcode-slide
+  
+      
+      data-background-image=&#34;/img/boards.jpg&#34;
+  &gt;
+
+
+&lt;h2 id=&#34;custom-slide&#34;&gt;Custom Slide&lt;/h2&gt;
+
+&lt;p&gt;Customize the slide style and background&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; slide background-image=&amp;quot;/img/boards.jpg&amp;quot; &amp;gt;}}
+{{&amp;lt; slide background-color=&amp;quot;#0000FF&amp;quot; &amp;gt;}}
+{{&amp;lt; slide class=&amp;quot;my-style&amp;quot; &amp;gt;}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;custom-css-example&#34;&gt;Custom CSS Example&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s make headers navy colored.&lt;/p&gt;
+
+&lt;p&gt;Create &lt;code&gt;assets/css/reveal_custom.css&lt;/code&gt; with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.reveal section h1,
+.reveal section h2,
+.reveal section h3 {
+  color: navy;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;questions&#34;&gt;Questions?&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://discourse.gohugo.io&#34; target=&#34;_blank&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

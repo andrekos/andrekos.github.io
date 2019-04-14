@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>time series on Dr Andrey Kostenko</title>
+    <link>//localhost:1313/categories/time-series/</link>
+    <description>Recent content in time series on Dr Andrey Kostenko</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Sep 2015 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="//localhost:1313/categories/time-series/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Time series forecasting: ex ante vs ex post</title>
+      <link>//localhost:1313/post/ex-ante-vs-ex-post/</link>
+      <pubDate>Sun, 06 Sep 2015 00:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/post/ex-ante-vs-ex-post/</guid>
+      <description>Ex ante forecast is a forecast based solely on information available at the time of the forecast, whereas ex post forecast is a forecast that uses information beyond the time at which the forecast is made. Let’s discuss the two in more detail, as in different contexts the terms may mean slightly different things.
+Introduction Only one thing is true about forecasts - they are always wrong. Any forecast $\widehat{Y_t}$ of the actual value $Y_t$ is associated with the forecast error $e_t=Y_t−\widehat{Y_t}$.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,2 @@
+/* Source Themes Academic v3.3.0 | https://sourcethemes.com/academic/ */
+body{font-family:inherit;font-size:1rem;line-height:inherit;color:inherit;background-color:{{ .Get "background" }};margin-top:70px;padding-top:5px;counter-reset:captions}blockquote{padding:.5rem 1rem;margin:.8rem 0;color:#9a9a9a;border-left:.25rem solid #fc6}

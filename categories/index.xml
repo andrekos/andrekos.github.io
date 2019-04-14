@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Dr Andrey Kostenko</title>
+    <link>//localhost:1313/categories/</link>
+    <description>Recent content in Categories on Dr Andrey Kostenko</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="//localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PhD</title>
+      <link>//localhost:1313/categories/phd/</link>
+      <pubDate>Fri, 02 Jan 2015 00:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/categories/phd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>time series</title>
+      <link>//localhost:1313/categories/time-series/</link>
+      <pubDate>Sun, 06 Sep 2015 00:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/categories/time-series/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
