@@ -20,23 +20,5 @@
       <description></description>
     </item>
     
-    <item>
-      <title>GA Cushen</title>
-      <link>//localhost:1313/authors/ga-cushen/</link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 +0800</pubDate>
-      
-      <guid>//localhost:1313/authors/ga-cushen/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MS Nixon</title>
-      <link>//localhost:1313/authors/ms-nixon/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0800</pubDate>
-      
-      <guid>//localhost:1313/authors/ms-nixon/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
