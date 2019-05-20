@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Dr Andrey Kostenko" />
+  <title>Implementing AI &amp; Deep Learning in R, the well-known open-source platform for Data Science and Machine Learning</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="2ndAIconf_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="2ndAIconf_files/reveal.js-3.3.0.1/css/theme/night.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em; color: #E7AD52; }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section data-background-image="images/ai0.jpg">
+    <h1 class="title">Implementing AI &amp; Deep Learning in R, the well-known open-source platform for Data Science and Machine Learning</h1>
+    <h2 class="author">Dr Andrey Kostenko</h2>
+    <h3 class="date">May 17, 2019 <br> <font size="5" color="#E7AD52">2nd Applying Artificial Intelligence and Deep Learning for Enterprises Conference </font> <br> <font size="5" color="#E7AD52"> Pan Pacific, Singapore </font></h3>
+</section>
+
+<section><section id="agenda" class="title-slide slide level1"><h1>Agenda</h1></section><section id="definitions-examples" class="slide level2">
+<h2>Definitions &amp; examples</h2>
+<ul>
+<li>What is Artificial Intelligence?</li>
+<li>What is Machine Learning?</li>
+<li>What is Deep Learning?</li>
+</ul>
+</section><section id="r-ecosystem" class="slide level2">
+<h2>R ecosystem</h2>
+<ul>
+<li>R</li>
+<li>RStudio’s IDE for R</li>
+<li>RStudio’s other products</li>
+<li>Python in RStudio</li>
+</ul>
+</section><section id="r-for-machine-learning" class="slide level2">
+<h2>R for Machine Learning</h2>
+<ul>
+<li>caret</li>
+<li>mlr</li>
+<li>parsnip</li>
+<li>xgboost</li>
+<li>lightgbm</li>
+<li>catboost</li>
+</ul>
+</section><section id="r-for-deep-learning" class="slide level2">
+<h2>R for Deep Learning</h2>
+<ul>
+<li>h2o</li>
+<li>mxnet</li>
+<li>keras</li>
+<li>tensorflow</li>
+</ul>
+</section><section id="r-for-explainable-ai" class="slide level2">
+<h2>R for eXplainable AI</h2>
+<ul>
+<li>lime</li>
+<li>shapper</li>
+<li>DALEX</li>
+<li>iml</li>
+</ul>
+</section><section id="r-models-in-production" class="slide level2">
+<h2>R models in production</h2>
+<ul>
+<li>API builders</li>
+<li>format converters</li>
+<li>R in cloud</li>
+<li>Docker for R</li>
+</ul>
+</section><section id="take-home-message" class="slide level2">
+<h2>Take-home message</h2>
+<ul>
+<li>Is R good for DL, ML &amp; AI?</li>
+</ul>
+</section></section>
+<section><section id="artificial-intelligence-machine-learning-deep-learning" class="title-slide slide level1"><h1>Artificial Intelligence <br> Machine Learning <br>Deep Learning</h1></section><section id="artificial-intelligence-is-an-umbrella-term" class="slide level2">
+<h2>Artificial Intelligence is an umbrella term</h2>
+<p><img data-src="images/ai_vs_ml_vs_dl.png" alt="some caption" /></p>
+<aside class="notes">
+<p>You can think of deep learning, machine learning and artificial intelligence as a set of Russian dolls nested within each other, beginning with the smallest and working out. Deep learning is a subset of machine learning, and machine learning is a subset of AI, which is an umbrella term for any computer program that does something smart.</p>
+<ol type="1">
+<li>As you can see on the above image, DL is a subset of ML, which is also a subset of <strong>AI</strong>. So, AI is the all-encompassing concept that initially erupted, then followed by ML that thrived later, and lastly DL that is promising to escalate the advances of AI to another level.</li>
+<li><strong>ML</strong> can be loosely interpreted to mean empowering computer systems with the ability to “learn”. The intention of ML is to enable machines to learn by themselves using the provided data and make accurate predictions / decisions. ML is a subset of artificial intelligence; in fact, it’s simply a technique for realizing AI.</li>
+<li><strong>DL</strong> is a subset of ML; in fact, it’s simply a technique for realizing machine learning. In other words, DL is the next evolution of machine learning.</li>
+</ol>
+</aside>
+</section><section id="ai-defined" class="slide level2">
+<h2>AI defined</h2>
+<ul>
+<li class="fragment">AI is a computer system able to <mark><em>perform tasks that normally require human intelligence</em></mark>, such as visual perception, speech recognition, decision-making, and natural language translation.</li>
+</ul>
+<ul>
+<li class="fragment">AI is the capability of a machine to <mark><em>imitate intelligent human behavior</em></mark>.</li>
+</ul>
+</section><section id="ai-exemplified" class="slide level2">
+<h2>AI exemplified</h2>
+<p>considering only those not directly falling into ML or DL category</p>
+<ul>
+<li class="fragment">AI can be a <mark>pile of if-then statements</mark>, which are rules explicitly programmed by a human hand. Collectively, these if-then statements are sometimes <mark>called rule engines, expert systems, knowledge graphs or symbolic AI </mark>.</li>
+</ul>
+<ul>
+<li class="fragment">AI includes evolutionary computation, often associated with genetic algorithms, successfully used as a competitive alternative for training Deep Neural Networks for Reinforcement Learning.</li>
+</ul>
+<ul>
+<li class="fragment"><a href="https://betanews.com/wp-content/uploads/2015/07/terminator-900x506.jpg">Skynet</a>, a fictional artificial neural network-based conscious group mind and artificial general intelligence system from the terminator series.</li>
+</ul>
+</section><section id="ml-defined" class="slide level2">
+<h2>ML defined</h2>
+<ul>
+<li class="fragment">Arthur Samuel (1959): Machine Learning is the field of study that gives computers the <mark><em>ability to learn without being explicitly programmed</em></mark>.</li>
+</ul>
+<ul>
+<li class="fragment">Machine learning is the science of getting computers to act <mark><em>without being explicitly programmed</em></mark>.</li>
+</ul>
+<ul>
+<li class="fragment">Machine learning is the concept that a computer program can learn and <mark><em>adapt to new data without human interference</em></mark>.</li>
+</ul>
+<ul>
+<li class="fragment">Machine learning is based on algorithms that can learn from data <mark><em>without relying on rule-based programming</em></mark>.</li>
+</ul>
+<ul>
+<li class="fragment">Machine learning algorithms can figure out how to perform important tasks <mark><em>by generalizing from examples</em></mark>.</li>
+</ul>
+</section><section id="ml-exemplified" class="slide level2">
+<h2>ML exemplified</h2>
+<p>considering only those not directly falling into DL category</p>
+<ul>
+<li class="fragment">linear models (LM), generalised linear models (GLM) for non-Gaussian outcomes, generalised additive models (GAM) for non-linear effects etc.</li>
+</ul>
+<ul>
+<li class="fragment"><a href="https://cdn-images-1.medium.com/max/1200/1*IPLwmH-TJRhEWXW7uaetMw.png">decision trees</a>, as a powerful and interpretable alternative to linear models &amp; algorithms; ensembles of decision trees for regression and classification (bagging, boosting)</li>
+</ul>
+</section><section id="dl-defined" class="slide level2">
+<h2>DL defined</h2>
+<p>Ian Goodfellow and Aaron Courville in their book titled “Deep Learning” define Deep Learning in terms of the depth of the architecture of the models:</p>
+<blockquote>
+<p>The hierarchy of concepts allows the computer to learn complicated concepts by building them out of simpler ones. If we draw a graph showing how these concepts are built on top of each other, the graph is deep, with many layers. For this reason, we call this approach to AI <mark>deep learning</mark>.</p>
+</blockquote>
+<p>The above is often simplified to:</p>
+<blockquote>
+<p>Deep learning is the implementation of neural networks with <mark>more than a single hidden layer</mark> of neurons.</p>
+</blockquote>
+</section><section id="dl-exemplified" class="slide level2">
+<h2>DL exemplified</h2>
+<p>A key difference from ML is the ability to perform automatic feature extraction from raw data, also called feature learning.</p>
+<ul>
+<li class="fragment">Convolutional Neural Networks (CNN) learn these features for computer vision applications, such as image classification, object detection, semantic segmentation etc. <hrule></li>
+</ul>
+<ul>
+<li class="fragment">Recurrent Neural Networks (RNN) learn these features for natural language processing tasks, such as sentiment analysis, next word prediction, chatbots, speech recognition (Alexa, Siri, Google home), machine reading comprehension, machine translation etc</li>
+</ul>
+<ul>
+<li class="fragment">CNN and RNN can be used jointly for automatic image captioning, video processing tasks, e.g. human activity recognition</li>
+</ul>
+</section></section>
+<section><section id="r-ecosystem-1" class="title-slide slide level1"><h1>R ecosystem</h1></section><section id="r" class="slide level2">
+<h2>R</h2>
+<ul>
+<li><a href="https://cran.r-project.org/doc/html/interface98-paper/paper.html">historically</a>, a programming language for statistical computing and graphics 1st release 1995 / stable beta in 2000 / now 4-5 releases <a href="https://cran.r-project.org/bin/windows/base/old/">every year</a></li>
+<li>highly extensible through the use of user-submitted packages <code>nrow(available.packages())</code> returned 14127 <a href="https://cran.r-project.org/">CRAN</a> packages not counting Bioconductor repository, github, gitlab etc</li>
+<li>now, R is more than just a programming language, it’s more like an ecosystem with a very active community <a href="https://www.r-bloggers.com/">very active community</a></li>
+</ul>
+</section><section id="rstudio" class="slide level2">
+<h2>RStudio</h2>
+<ul>
+<li>free and open-source platform-independent <a href="https://www.rstudio.com/products/rstudio/">IDE</a> for R</li>
+<li>first public beta in Feb 2011 / v1.0 in Nov 2016 / v1.2 in Apr 2019</li>
+</ul>
+<p><br />
+</p>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li>available in two editions: RStudio Desktop and RStudio Server</li>
+<li><a href="https://www.rstudio.com/products/rstudio-server-pro/">commercial products</a> enterprise-ready professional software for R<br />
+</li>
+</ul>
+</div>
+<p><br />
+</p>
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li><a href="https://www.rstudio.com/products/rstudio/features/">features</a> integration with version control tools, databases etc</li>
+<li>tools to streamline and simplify creation of R packages</li>
+<li>interactive tools for code profiling, testing, debugging etc</li>
+</ul>
+</div>
+<p><br />
+</p>
+<div class="fragment" data-fragment-index="3">
+<ul>
+<li>great environment for writing <a href="https://bookdown.org/yihui/bookdown/">books</a>, <a href="https://alison.rbind.io/post/up-and-running-with-blogdown/">websites</a>, <a href="https://github.com/rstudio/revealjs">slides</a> ect</li>
+<li>ability to extend RStudio’s functionality via <a href="https://rstudio.github.io/rstudioaddins/"><strong><em>addins</em></strong></a></li>
+<li>centralised searchable repository for all addins (84 addins found)</li>
+</ul>
+</div>
+</section><section id="rstudios-other-products" class="slide level2">
+<h2>RStudio’s other products</h2>
+<ul>
+<li><a href="https://www.rstudio.com/products/rpackages/">R packages</a> RStudio team contributes code to many R packages</li>
+<li><a href="https://www.tidyverse.org/">tidyverse</a> opinionated collection of R packages for data science</li>
+<li><a href="https://shiny.rstudio.com/">shiny</a> Easy web applications in R</li>
+<li><a href="https://rstudio.github.io/leaflet/">leaflet</a> interactive maps in R</li>
+<li><a href="https://rstudio.github.io/r2d3/">r2d3</a> R Interface to D3 Visualizations</li>
+<li><a href="https://spark.rstudio.com/">sparklyr</a> interface to Apache Spark</li>
+<li><a href="https://www.rstudio.com/products/connect/">RStudio Connect</a>, RStudio Package Manager</li>
+<li><a href="https://db.rstudio.com/">Databases</a> makes it easy to work with databases in R</li>
+<li><a href="https://bookdown.org/">bookdown</a> lets you publish your Rmarkdown book for free</li>
+<li><a href="https://resources.rstudio.com/webinars">webinars</a>, <a href="https://www.rstudio.com/resources/cheatsheets/">cheatsheets</a>, <a href="https://blog.rstudio.com/">blog</a> etc</li>
+<li><a href="https://www.rstudio.com/conference/">rstudio::conf</a> RStudio’s yearly conference</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Connect data scientists with decision makers</li>
+<li>Package management built for R</li>
+</ul>
+</aside>
+</section><section id="python-in-rstudio" class="slide level2">
+<h2>Python in RStudio</h2>
+<p>Two major data science languages: Python and R</p>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li><a href="https://blog.rstudio.com/categories/rstudio-ide">RStudio 1.2</a> comes with support for Python, SQL, Stan, D3</li>
+<li>One can now enjoy pandas and seaborn plots in RStudio!</li>
+</ul>
+</div>
+<p><br />
+</p>
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li>RStudio offers interface to Python via R package <a href="https://github.com/rstudio/reticulate"><strong>reticulate</strong></a></li>
+<li>RStudio offers interface to Python’s major DL libraries</li>
+<li>One can now enjoy <a href="https://keras.rstudio.com/">Keras</a> and <a href="https://tensorflow.rstudio.com/">TensorFlow</a> in RStudio!</li>
+</ul>
+</div>
+<aside class="notes">
+<p>have historically taken two separate paths when it comes to where data scientists are doing the coding. The R language has the RStudio IDE, which is a great IDE for data science because of its feature rich setup for efficiently developing analyses. The Python language has the Jupyter Notebook (and more recently Jupyter Lab) that provides a web-based notebook. Most data scientists write their code in separate places - Python is written in Jupyter Notebooks, and R is written in the RStudio IDE. Until now - RStudio is making the case for a powerful multilanguage IDE designed for Data Science.</p>
+<p>RStudio is making the case for a powerful multilanguage IDE designed for Data Science.</p>
+<p>reticulate is an RStudio package that provides “a comprehensive set of tools for interoperability between Python and R”. With it, it is possible to call Python and use Python libraries within an R session, or define Python chunks in R markdown. I think that using R Notebooks is the best way to work with Python and R; The reticulate package makes it possible to embed a Python session within an R process, allowing you to import Python modules and call their functions directly from R. If you are an R developer that uses Python for some of your work or a member of data science team that uses both languages, reticulate can dramatically streamline your workflow.</p>
+</aside>
+</section>
+<!-- need extra end tag before next section -->
+</section>
+<section class="titleslide slide level1">
+<h1>
+R for Machine Learning
+</h1>
+<section style="text-align: left;">
+<p><br></p>
+<p>Resources:</p>
+<div class="container">
+<div class="col">
+<p><img src="images/ai1.JPG"  height="300" width="400"></p>
+</div>
+<div class="col">
+<ul>
+<li><p><a href="https://r4ds.had.co.nz/">Free quality books</a></p></li>
+<li><p><a href="https://www.rstudio.com/online-learning/">RStudio’s online learning</a></p></li>
+<li><p><a href="https://stats.stackexchange.com/questions/tagged/r+xgboost">StackOverflow community</a></p></li>
+<li><p><a href="https://www.kaggle.com/kernels?sortBy=voteCount&amp;group=everyone&amp;pageSize=20&amp;language=R">Kaggle competitions</a></p></li>
+<li><p><a href="https://cran.r-project.org/web/views/MachineLearning.html">CRAN ML task view</a></p></li>
+</ul>
+</div>
+</div>
+</section><section id="caret" class="slide level2">
+<h2>caret</h2>
+<ul>
+<li>short for <a href="http://topepo.github.io/caret/index.html"><strong>C</strong>lassification <strong>A</strong>nd <strong>RE</strong>gression <strong>T</strong>raining</a></li>
+<li>a unified R interface to 160+ different models / algorithms</li>
+<li>in development since 2005 by Max Kuhn &amp; Co</li>
+<li>offer data splitting, pre-processing, feature selection, model tuning using re-sampling, variable importance estimation etc</li>
+<li>convenient to learn a single framework’s syntax to get predictions from many completing models across different R packages</li>
+</ul>
+</section><section id="mlr" class="slide level2">
+<h2>mlr</h2>
+<ul>
+<li>short for <a href="https://mlr.mlr-org.com/"><strong>M</strong>achine <strong>L</strong>earning in <strong>R</strong></a></li>
+<li>re-sampling methods like bootstrapping and cross-validation</li>
+<li>extensive visualizations (e.g. ROC curves, predictions etc)</li>
+<li>variable selection with filters and wrappers</li>
+<li>Hyper-parameter tuning using different optimization strategies</li>
+<li>cost-sensitive learning, threshold tuning and imbalance correction</li>
+<li><strong>mlr</strong> developers are now working on <strong>mlr3</strong>, a clean rewrite of mlr</li>
+<li><a href="http://philipppro.github.io/2018-11-9-mlr_vs_caret/" class="uri">http://philipppro.github.io/2018-11-9-mlr_vs_caret/</a></li>
+</ul>
+</section><section id="parsnip-new" class="slide level2">
+<h2>parsnip (new)</h2>
+<ul>
+<li>in active development since 2018 by Max Kuhn &amp; Co</li>
+<li><a href="https://github.com/tidymodels/parsnip"><strong>parsnip</strong></a> is a new <strong>tidymodels</strong> package to generalize model interfaces across packages, it is further development of some key ideas in <em>caret</em></li>
+<li>single function interface for types of models, where say for linear regression, user chooses computational engine for training e.g. <strong>lm</strong>, <strong>glmnet</strong>, <strong>Spark</strong>, <strong>Stan</strong>, and <strong>Keras</strong></li>
+<li>designed <strong><em>only</em></strong> to solve the interface issue, no pre-processing, model tuning, re-sampling … not designed to be a drop-in replacement for <strong>caret</strong></li>
+<li><a href="https://www.tidyverse.org/articles/2018/11/parsnip-0-0-1/" class="uri">https://www.tidyverse.org/articles/2018/11/parsnip-0-0-1/</a></li>
+</ul>
+</section><section id="xgboost" class="slide level2">
+<h2>xgboost</h2>
+<p>Scalable, Portable and Distributed Gradient Boosting (GBDT, GBRT or GBM) Library, for Python, R, Java, Scala, C++ and more. Runs on single machine, Hadoop, Spark, Flink and DataFlow <a href="https://xgboost.ai/" class="uri">https://xgboost.ai/</a> an implementation of gradient boosted decision trees designed for speed and performance</p>
+<ul>
+<li>started by Tianqi Chen in March 2014 and became famous in 2016</li>
+<li>stands for “Extreme Gradient Boosting”</li>
+<li>built-in algos to deal with missing values, class imbalance etc<br />
+</li>
+<li>GPU support, distributed storage &amp; compute support, e.g. run on AWS EC2 cluster &amp; accessing data on S3</li>
+<li><a href="https://github.com/dmlc/xgboost/blob/master/NEWS.md">latest release changelog</a></li>
+</ul>
+</section><section id="lightgbm-microsoft" class="slide level2">
+<h2>lightgbm (Microsoft)</h2>
+<p>A fast, distributed, high performance gradient boosting (GBDT, GBRT, GBM or MART) framework based on decision tree algorithms, used for ranking, classification and other machine learning tasks. <a href="https://lightgbm.readthedocs.io/en/latest/" class="uri">https://lightgbm.readthedocs.io/en/latest/</a></p>
+<ul>
+<li>First stable version in Jan 2017</li>
+<li>Faster training speed and higher efficiency</li>
+<li>Lower memory usage</li>
+<li>Better accuracy</li>
+<li>Support of parallel and GPU learning</li>
+<li>Capable of handling large-scale data</li>
+</ul>
+</section><section id="catboost-yandex" class="slide level2">
+<h2>catboost (Yandex)</h2>
+<p>A fast, scalable, high performance Gradient Boosting on Decision Trees library, used for ranking, classification, regression and other machine learning tasks for Python, R, Java, C++. Supports computation on CPU and GPU. <a href="https://catboost.ai" class="uri">https://catboost.ai</a></p>
+<ul>
+<li>Open-sourced in Apr 2017</li>
+<li>Best in class prediction speed</li>
+<li>Support for both numerical and categorical features</li>
+<li>Fast GPU and multi-GPU support for training out of the box</li>
+<li>review of the <a href="https://catboost.ai/news/0-10-and-0-9-releases-review">latest releases</a> Good news for R users. We implemented GPU support in our R package.</li>
+</ul>
+</section>
+<!-- need extra end tag before next section -->
+</section>
+<section class="titleslide slide level1">
+<h1>
+R for Deep Learning
+</h1>
+<section style="text-align: left;">
+<p><br></p>
+<p>Resources:</p>
+<div class="container">
+<div class="col">
+<p><img src="images/ai2.jpg"  height="300" width="400"></p>
+</div>
+<div class="col">
+<ul>
+<li><p><a href="https://www.manning.com/books/deep-learning-with-r">F. Chollet &amp; J. J. Allaire (2018) <strong><em>Deep Learning with R</em></strong></a></p></li>
+<li><p><a href="https://www.amazon.com/Deep-Learning-R-Abhijit-Ghatak/dp/9811358494">A. Ghatak (2019) <strong><em>Deep Learning with R</em></strong></a></p></li>
+<li><p><a href="https://keras.rstudio.com/">RStudio’s tutorials &amp; examples for Keras</a></p></li>
+</ul>
+</div>
+</div>
+</section><section id="h2o" class="slide level2">
+<h2>h2o</h2>
+<p>H2O is an open source, in-memory, distributed, fast, and scalable machine learning and predictive analytics platform that allows you to build machine learning models on big data and provides easy productionalization of those models in an enterprise environment.</p>
+<ul>
+<li>implements multi-layer perceptron &amp; autoencoders</li>
+<li>R, Python, Flow UI use h2o via REST API</li>
+<li>CNNs and RNNs through third-party integrations</li>
+<li>DL capabilities are limited, mostly classical ML at scale</li>
+<li><a href="http://docs.h2o.ai/h2o/latest-stable/h2o-docs/booklets/DeepLearningBooklet.pdf">h2o DL manual</a></li>
+</ul>
+<aside class="notes">
+<ul>
+<li>h2o: <a href="http://docs.h2o.ai/h2o/latest-stable/h2o-docs/welcome.html" class="uri">http://docs.h2o.ai/h2o/latest-stable/h2o-docs/welcome.html</a></li>
+<li><a href="https://www.analyticsvidhya.com/blog/2016/05/h2o-data-table-build-models-large-data-sets/" class="uri">https://www.analyticsvidhya.com/blog/2016/05/h2o-data-table-build-models-large-data-sets/</a></li>
+<li><a href="https://towardsdatascience.com/democratising-machine-learning-with-h2o-7f2f79e10e3f" class="uri">https://towardsdatascience.com/democratising-machine-learning-with-h2o-7f2f79e10e3f</a></li>
+<li><a href="http://htmlpreview.github.io/?https://github.com/ledell/sldm4-h2o/blob/master/sldm4-deeplearning-h2o.html">h2o tutorial</a> &amp;</li>
+</ul>
+</aside>
+</section><section id="mxnet" class="slide level2">
+<h2>MXNet</h2>
+<p>MXNet is a machine-learning framework with APIs is languages such as R, Python and Julia which has been adopted by AWS.</p>
+<ul>
+<li>Deep Learning framework of <a href="https://www.allthingsdistributed.com/2016/11/mxnet-default-framework-deep-learning-aws.html">choice at AWS</a></li>
+<li>Limited adoption by the established and aspiring data scientists e.g. at kaggle.com, as compared to e.g. Keras, pytorch and fastai</li>
+<li><a href="https://mxnet.incubator.apache.org/versions/master/tutorials/r/index.html">MXNet R tutorials</a></li>
+</ul>
+<aside class="notes">
+<ul>
+<li><a href="https://www.infoworld.com/article/3144025/why-amazon-picked-mxnet-for-deep-learning.html" class="uri">https://www.infoworld.com/article/3144025/why-amazon-picked-mxnet-for-deep-learning.html</a></li>
+<li><a href="https://aws.amazon.com/mxnet/" class="uri">https://aws.amazon.com/mxnet/</a></li>
+</ul>
+</aside>
+</section><section id="keras" class="slide level2">
+<h2>Keras</h2>
+<p><a href="https://keras.rstudio.com/"><strong>Keras</strong></a> is a high-level neural networks API developed with a focus on enabling fast experimentation. Being able to go from idea to result with the least possible delay is key to doing good research.</p>
+<ul>
+<li><font size="5" color="#E7AD52"> Absolutely the best choice for DL an R user can currently enjoy!</font></li>
+<li>Broad adoption in the industry and in the research community</li>
+<li>Tons of shared code on the Internet e.g. at Kaggle</li>
+<li>Development is backed Google, Microsoft, Nvidia and AWS</li>
+<li>Allows the same code to run on CPU or on GPU, seamlessly</li>
+<li>Built-in support for CNN, RNN, RNN, LSTM, GRU etc</li>
+<li>Flexibility to build virtually any custom deep learning model</li>
+</ul>
+</section><section id="tensorflow" class="slide level2">
+<h2>TensorFlow</h2>
+<p>The R interface to TensorFlow lets you work productively using either high-level APIs or the core TensorFlow API.</p>
+<ul>
+<li>RStudio’s <a href="https://blogs.rstudio.com/tensorflow/"><strong><em>TensorFlow for R</em></strong> blog</a> is pretty active</li>
+<li><a href="https://blogs.rstudio.com/tensorflow/posts/2017-10-04-tfruns/"><strong>tfruns</strong></a>: Tools for TensorFlow Training Runs</li>
+<li><a href="https://tensorflow.rstudio.com/tools/"><strong>tfdeploy</strong></a>: tools designed to make exporting and serving TensorFlow models easy.</li>
+</ul>
+<p>NB: while TensorFlow models are typically defined and trained using R or Python code, it is possible to deploy TensorFlow models in a wide variety of environments without any runtime dependency on R or Python</p>
+</section>
+<!-- need extra end tag before next section -->
+</section>
+</section>
+<!-- need extra end tag before next section -->
+</section>
+<section class="titleslide slide level1">
+<h1>
+R for eXplainable AI
+</h1>
+<section style="text-align: left;">
+<p><br></p>
+<p><a href="https://christophm.github.io/interpretable-ml-book/">interpretable-ml-book</a> Making Black Box Models Explainable</p>
+<p>These 4 CRAN packages are in active development:</p>
+<ul>
+<li><a href="https://github.com/thomasp85/lime">lime</a> is an R port of the Python library of the same name</li>
+<li><a href="https://github.com/ModelOriented/shapper">shapper</a> is an R wrapper of SHAP python library</li>
+<li><a href="https://github.com/pbiecek/DALEX">DALEX</a> stands for Descriptive mAchine Learning EXplanations</li>
+<li><a href="https://github.com/christophM/iml">iml</a> stands for Interpretable Machine Learning in R</li>
+</ul>
+<p>Shapper is a part of the DALEX universe. The DALEX universe is a part of the <a href="https://github.com/ModelOriented/DrWhy/blob/master/README.md">DrWhy.AI</a> universe, the collection of tools for Explainable AI (XAI). It’s based on shared principles and simple grammar for exploration, explanation and visualisation of predictive models.</p>
+</section><section id="lime" class="slide level2">
+<h2><a href="https://github.com/thomasp85/lime">lime</a></h2>
+<div style="float: center">
+LIME stands for Local Interpretable Model-agnostic Explanations
+</div>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li>it explains the predictions of black box classifiers by determining a small set of features in the original data that has driven the outcome of the prediction for any given prediction and any given classifier.</li>
+</ul>
+</div>
+<br />
+
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li>supports models created with <strong>caret</strong>, <strong>parsnip</strong> and <strong>mlr</strong></li>
+<li>supports explaining image and text models, e.g. by highlighting the relevant areas in an image or important words.</li>
+<li>unsupported models can be supported by adding a <em>predict_model</em> and <em>model_type</em> method for the given model</li>
+</ul>
+</div>
+</section><section id="shapper" class="slide level2">
+<h2><a href="https://github.com/ModelOriented/shapper">shapper</a></h2>
+<div style="float: center">
+SHAP stands for SHapley Additive exPlanations (SHAP)
+</div>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li>A unified approach to explain the output of any ML model.</li>
+<li>R wrapper over Python’s SHAP explainer for black-box models</li>
+<li>calculate influences of variables on particular observation, using Shapley values, technique borrowed from game theory.</li>
+</ul>
+</div>
+<br />
+
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li>for each prediction SHAP gives each feature an importance value</li>
+<li><a href="https://towardsdatascience.com/understanding-how-ime-shapley-values-explains-predictions-d75c0fceca5a">SHAP approach</a> is also implemented in <strong>iml</strong> or <strong>shapleyR</strong></li>
+<li>SHAP can be applied to images, text &amp; tabular data</li>
+</ul>
+</div>
+<aside class="notes">
+<ul>
+<li><a href="http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions" class="uri">http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions</a></li>
+</ul>
+</aside>
+</section><section id="dalex" class="slide level2">
+<h2><a href="https://github.com/pbiecek/DALEX">DALEX</a></h2>
+<div style="float: center">
+DALEX stands for Descriptive mAchine Learning EXplanations
+</div>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li>models based on boosting, bagging or NN are true black boxes</li>
+<li>it is hard to trace the link between features and model outcomes.</li>
+<li><a href="https://github.com/pbiecek/DALEX">DALEX</a> tools help understand how complex models are working</li>
+</ul>
+</div>
+<br />
+
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li>supporting keras, parsnip, caret, mlr, h2o, xgboost, catboost etc</li>
+<li>cross-comparison of of model developed in R, Java and Python</li>
+<li>dump trained model with pickle in Python and pick it up with <strong>reticulate</strong> in R for prediction &amp; explanations</li>
+</ul>
+</div>
+<aside class="notes">
+<ul>
+<li><a href="https://raw.githack.com/pbiecek/DALEX_docs/master/vignettes/Multilanguages_comparision.html" class="uri">https://raw.githack.com/pbiecek/DALEX_docs/master/vignettes/Multilanguages_comparision.html</a></li>
+<li><a href="https://pbiecek.github.io/DALEX_docs/4-2-predictionBreakdown.html#predictionBreakdown" class="uri">https://pbiecek.github.io/DALEX_docs/4-2-predictionBreakdown.html#predictionBreakdown</a></li>
+<li><a href="https://cran.r-project.org/web/packages/breakDown/index.html" class="uri">https://cran.r-project.org/web/packages/breakDown/index.html</a></li>
+</ul>
+</aside>
+</section><section id="iml" class="slide level2">
+<h2><a href="https://github.com/christophM/iml">iml</a></h2>
+<div style="float: center">
+<em>iml</em> stands for <em>i</em>nterpretable <em>m</em>achine <em>l</em>earning
+</div>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li>interprets the behaviour and explains predictions of ML models</li>
+<li>implements model-agnostic interpretability methods, meaning they can be used with any machine learning model:</li>
+</ul>
+</div>
+<br />
+
+<div class="fragment" data-fragment-index="2">
+<ul>
+<li>feature importance</li>
+<li>individual conditional expectation plots (ICE)</li>
+<li>accumulated local effects</li>
+<li>tree surrogate</li>
+<li>LocalModel: Local Interpretable Model-agnostic Explanations</li>
+<li>Shapley value for explaining single predictions</li>
+</ul>
+</div>
+</section>
+<!-- need extra end tag before next section -->
+</section>
+</section>
+<!-- need extra end tag before next section -->
+</section>
+<section class="titleslide slide level1">
+<h1>
+R models in production
+</h1>
+<section style="text-align: left;">
+<p><br></p>
+<p>CRAN task view <a href="https://cran.r-project.org/web/views/ModelDeployment.html">ModelDeployment</a> reviews R packages, grouped by topic, that provide functionalities to streamline the process of deploying models to various production environments.</p>
+</section><section id="r-api-builders" class="slide level2">
+<h2>R API builders</h2>
+<div class="container">
+<div class="col">
+<ul>
+<li>R package <a href="https://github.com/trestletech/plumber"><strong>plumber</strong></a> helps creating a web API by merely decorating your R source code with special comments.</li>
+<li>R package <a href="https://github.com/Bart6114/jug"><strong>jug</strong></a> is a simple API-builder web framework.</li>
+<li>R package <a href="https://github.com/dselivanov/RestRserve"><strong>RestRServe</strong></a> is a web API framework for building high-performance microservices and app backends.</li>
+</ul>
+</div>
+<div class="col">
+<p><img align="right" src="https://www.rplumber.io/components/images/plumber-broken.png" height="300" width="400"/></p>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>plumber package allows you to create a web API by merely decorating your existing R source code with special comments. The jug package is a simple API-builder web framework</li>
+<li>The main difference with other frameworks (plumber, jug) is that it is parallel by design.</li>
+</ul>
+</aside>
+</section><section id="r-converters" class="slide level2">
+<h2>R converters</h2>
+<ul>
+<li>R package <a href="https://github.com/jpmml/r2pmml"><strong>R2PMML</strong></a> provides the interface to Predictive Model Markup Language (PMML) format</li>
+<li>R package <a href="https://github.com/onnx/onnx-r"><strong>onnx</strong></a> provides the interface to Open Neural Network Exchange i.e. <a href="https://onnx.ai/">ONNX</a></li>
+<li>R package <a href="https://github.com/opendatagroup/hadrian/tree/master/aurelius"><strong>aurelius</strong></a> provides tools for converting R objects and syntax into the Portable Format for Analytics i.e. <a href="http://dmg.org/pfa/">PFA</a>. Check out this <a href="https://stevenmortimer.com/pfa-with-the-r-package-aurelius/">post</a> for further detail.</li>
+</ul>
+<aside class="notes">
+<ul>
+<li><p>is an XML-based language which provides a way for applications to define statistical and data mining models and to share models between PMML compliant applications.</p></li>
+<li><p>Models trained in one framework can be easily transferred to another framework for inference. This open source format enables the interoperability between different frameworks and streamlining the path from research to production will increase the speed of innovation in the AI community. Note that this package is based on the reticulate package to interface with the original Python API so Python binary is required for deployment. <a href="http://dmg.org/pfa/" class="uri">http://dmg.org/pfa/</a>]</p></li>
+</ul>
+</aside>
+</section><section id="r-in-cloud" class="slide level2">
+<h2>R in cloud</h2>
+<ul>
+<li><p><a href="http://www.rpubs.com/TimFlocke/SageMaker_R_demo">AWS Sagemaker via Jupyter notebook or R Studio</a> the latter option is possible by <strong>reticulating</strong> the Amazon SageMaker Python SDK</p></li>
+<li><p>R package <a href="https://tensorflow.rstudio.com/tools/cloudml/articles/deployment.html"><strong>cloudml</strong></a> provides functionality to easily deploy models to <a href="https://cloud.google.com/ml-engine/">Google Cloud ML Engine</a></p></li>
+</ul>
+</section><section id="docker-for-r" class="slide level2">
+<h2>Docker for R</h2>
+<p>Docker allows you to wrap up your R product in a self contained mini computer that can then be easily shared and run in a variety of different environments.</p>
+<p>Docker file builds docker image which runs docker container.</p>
+<ul>
+<li><p><a href="https://www.rocker-project.org/">The Rocker Project</a> Docker Containers for the R Environment</p></li>
+<li><p><a href="https://github.com/pbhogale/gpu-keras-rstudio">Dockerfile for GPU enabled rstudio server with keras+tensorflow</a> <br> to run the code from the Deep learning in R book given an NVIDIA GPU with drivers installed.</p></li>
+</ul>
+<aside class="notes">
+<p>Docker is an open source project based on Linux containers. It is a tool designed to make it easier to create, deploy, and run applications using containers. Containers allows you to package up an application with all of it’s libraries and other dependencies, and ship it all out as one package. Docker containers are very lightweight and fast.</p>
+<ul>
+<li><a href="https://www.bioconductor.org/packages/release/bioc/vignettes/sevenbridges/inst/doc/rstudio.html" class="uri">https://www.bioconductor.org/packages/release/bioc/vignettes/sevenbridges/inst/doc/rstudio.html</a></li>
+<li><a href="https://colinfay.me/docker-r-reproducibility/" class="uri">https://colinfay.me/docker-r-reproducibility/</a></li>
+<li><a href="https://chapmandu2.github.io/post/2019/02/02/dockerizing-your-r-analysis/" class="uri">https://chapmandu2.github.io/post/2019/02/02/dockerizing-your-r-analysis/</a></li>
+<li><a href="https://towardsdatascience.com/ml-models-prototype-to-production-6bfe47973123" class="uri">https://towardsdatascience.com/ml-models-prototype-to-production-6bfe47973123</a></li>
+</ul>
+</aside>
+</section>
+<!-- need extra end tag before next section -->
+</section>
+</section>
+<!-- need extra end tag before next section -->
+</section>
+<section class="titleslide slide level1">
+<h1>
+Take-home message
+</h1>
+<section style="text-align: left;">
+<ul>
+<li>R is world’s most widely used statistics programming language.</li>
+<li>R is great for data analysis, data visualization, data munging.</li>
+</ul>
+<br />
+
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li>R is a solid choice for machine learning, including deep learning.</li>
+<li>R is a solid choice for AI, including eXplainable AI</li>
+</ul>
+</div>
+<br />
+
+<div class="fragment" data-fragment-index="2">
+
+
+<div class="container">
+<img  style="margin-right: 20px;" src="images/reticulated_python.png" height="200" width="200">
+<div class="col">
+<ul>
+<li>R or Python? Wrong question. Why not both?</li>
+<li>RStudio makes the joint use of R and Python easy.</li>
+<li>Take the best of two worlds!</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- need extra end tag before next section -->
+</section>
+</section>
+<!-- need extra end tag before next section -->
+</section>
+<section class="titleslide slide level1" data-background-image="images/ai3.jpg">
+<h1 style="color:red;">
+<br>Questions?
+</h1>
+<section style="text-align: left;">
+<p><br></p>
+<p><br> <br> <br> <br></p>
+<p><br></p>
+<ul>
+<li><p>Website: <br> <a href="http://andreykostenko.com/">http://andreykostenko.com</a></p></li>
+<li><p>LinkedIn: <br> <a href="https://www.linkedin.com/in/akoste01/">https://www.linkedin.com/in/akoste01/</a></p></li>
+</ul>
+<h1 style="color:white;text-align: center;">
+Thank you
+</h1>
+</section>
+<!-- need extra end tag before next section -->
+</section>
+<style>
+.container{
+    display: flex;
+}
+.col{
+    flex: 1;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+    margin: 5px;  /* and that, will result in a 10px gap */
+}
+
+</style>
+</section></section>
+    </div>
+  </div>
+
+  <script src="2ndAIconf_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="2ndAIconf_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '2ndAIconf_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '2ndAIconf_files/reveal.js-3.3.0.1/plugin/search/search.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
